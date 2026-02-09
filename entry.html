@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entry – Derek's Creative Library</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/category.css">
+  <link rel="stylesheet" href="css/entry.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img class="logo-dark" src="images/Logo-dark.png" alt="Logo" style="display: none;">
+        <img class="logo-light" src="images/Logo-light.png" alt="Logo" style="display: block;">
+      </div>
+      <nav class="navigation">
+        <ul>
+          <li><a href="index.html" data-initial="H"><span>Home</span></a></li>
+          <li><a href="project.html" data-initial="C"><span>Case Studies</span></a></li>
+          <li><a href="archives.html" data-initial="A"><span>Archives</span></a></li>
+          <li><a href="creative-garden.html" class="active" data-initial="C"><span>Creative Library</span></a></li>
+          <li><a href="experiments.html" data-initial="E"><span>Experiments</span></a></li>
+        </ul>
+      </nav>
+      <footer class="sidebar-footer">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+          <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <p>Last Updated<br><a href="#" class="date-link"></a></p>
+        <p><a href="#">Report an Issue</a></p>
+      </footer>
+    </aside>
+    <main class="content">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <ol class="breadcrumbs__list">
+          <li class="breadcrumbs__item"><a class="breadcrumbs__link" href="creative-garden.html">Creative Library</a></li>
+          <li class="breadcrumbs__sep" aria-hidden="true">/</li>
+          <li class="breadcrumbs__item"><a class="breadcrumbs__link" id="breadcrumbCategory" href="creative-garden.html">…</a></li>
+          <li class="breadcrumbs__sep" aria-hidden="true">/</li>
+          <li class="breadcrumbs__item"><span class="breadcrumbs__current" id="breadcrumbCurrent">Loading…</span></li>
+        </ol>
+      </nav>
+      <article class="entry-article" id="entryArticle">
+        <p class="entry-loading" id="entryLoading">Loading…</p>
+        <p class="entry-error" id="entryError" style="display: none;"></p>
+        <div class="entry-content" id="entryContent" style="display: none;">
+          <figure class="entry-cover-figure">
+            <div class="entry-cover-wrap" id="entryCoverWrap">
+              <img class="entry-cover" id="entryCover" alt="" style="display: none;">
+            </div>
+            <figcaption class="entry-cover-caption" id="entryCoverCaption" style="display: none;"></figcaption>
+            <p class="entry-cover-dimensions" id="entryCoverDimensions" style="display: none;"></p>
+          </figure>
+          <h1 class="entry-title" id="entryTitle"></h1>
+          <p class="entry-meta" id="entryMeta"></p>
+          <div class="entry-body" id="entryBody"></div>
+        </div>
+      </article>
+    </main>
+  </div>
+  <header class="mobile-header">
+    <div class="mobile-logo">
+      <img class="logo-dark" src="images/Logo-dark.png" alt="Logo" style="display: none;">
+      <img class="logo-light" src="images/Logo-light.png" alt="Logo" style="display: block;">
+    </div>
+    <button class="mobile-theme-toggle" id="mobileThemeToggle" aria-label="Toggle theme">
+      <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </header>
+  <nav class="mobile-nav">
+    <a href="index.html" class="mobile-nav-item">Home</a>
+    <a href="project.html" class="mobile-nav-item">Case Studies</a>
+    <a href="archives.html" class="mobile-nav-item">Archives</a>
+    <a href="creative-garden.html" class="mobile-nav-item active">Creative Library</a>
+    <a href="experiments.html" class="mobile-nav-item">Experiments</a>
+  </nav>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/entry.js"></script>
+</body>
+</html>

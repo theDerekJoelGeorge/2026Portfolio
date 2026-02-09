@@ -1,0 +1,134 @@
+/* Entry (article) detail page */
+
+.entry-article {
+  max-width: 56rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.entry-loading,
+.entry-error {
+  color: var(--color-subheading);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+body.light-mode .entry-loading,
+body.light-mode .entry-error {
+  color: var(--color-subheading-light);
+}
+
+.entry-title {
+  margin: 0 0 0.5rem 0;
+  color: var(--color-heading);
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+body.light-mode .entry-title {
+  color: var(--color-heading-light);
+}
+
+.entry-meta {
+  margin: 0 0 1.5rem 0;
+  color: var(--color-subheading);
+  font-size: 0.9375rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+body.light-mode .entry-meta {
+  color: var(--color-subheading-light);
+}
+
+.entry-cover-figure {
+  margin: 0 0 2rem 0;
+}
+
+.entry-cover-wrap {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 0.375rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+  margin-bottom: 0;
+}
+
+.entry-cover-wrap--placeholder {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+body.light-mode .entry-cover-wrap {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .entry-cover-wrap--placeholder {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.entry-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.entry-cover-caption {
+  margin: 0.5rem 0 0 0;
+  color: var(--color-subheading);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+body.light-mode .entry-cover-caption {
+  color: var(--color-subheading-light);
+}
+
+.entry-cover-dimensions {
+  margin: 0.25rem 0 0 0;
+  color: var(--color-subheading);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.3;
+  opacity: 0.85;
+}
+
+body.light-mode .entry-cover-dimensions {
+  color: var(--color-subheading-light);
+}
+
+.entry-body {
+  color: #8b8b8b;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+body.light-mode .entry-body {
+  color: #666666;
+}
+
+.entry-body br {
+  display: block;
+  content: '';
+  margin-bottom: 0.5em;
+}
+
+@media (max-width: 48rem) {
+  .entry-article {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .entry-title {
+    font-size: 1.375rem;
+  }
+
+  .entry-cover-wrap {
+    margin-bottom: 1.5rem;
+  }
+}

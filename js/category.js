@@ -58,6 +58,16 @@
       .replaceAll("'", '&#39;');
   }
 
+  function getEntryBody(entry) {
+    var raw = entry.body || entry.content || entry.entry || entry.text || entry.description || '';
+    return String(raw ?? '').trim();
+  }
+
+  function getEntryType(entry) {
+    var raw = entry.type || entry.Type || entry.entry_type || entry.kind || '';
+    return String(raw ?? '').trim();
+  }
+
   function getImageUrl(entry) {
     var raw = entry.image_url || entry.image || entry.thumbnail_url ||
       entry.photo_url || entry.photo || entry.url || entry.src || entry.cover_image ||
@@ -131,18 +141,101 @@
     });
   }
 
-  function renderGallery(entries) {
+  function isWritingsCategory(category) {
+    if (!category) return false;
+    var slug = (category.slug && String(category.slug).toLowerCase()) || '';
+    var name = (category.name && String(category.name).toLowerCase()) || '';
+    return slug === 'writings' || name.indexOf('writing') !== -1;
+  }
+
+  function displayCategoryName(nameOrSlug) {
+    if (!nameOrSlug) return '';
+    var s = String(nameOrSlug);
+    if (s.toLowerCase() === 'writings') return 'Writings';
+    return s;
+  }
+
+  function renderGallery(entries, category) {
     if (!gridEl) return;
     setLoading(false);
     if (!entries || entries.length === 0) {
       setEmpty('No entries yet.');
       return;
     }
+    emptyEl.style.display = 'none';
+
+    if (isWritingsCategory(category)) {
+      var types = [];
+      var typeSet = {};
+      entries.forEach(function (entry) {
+        var t = getEntryType(entry);
+        if (t && !typeSet[t]) {
+          typeSet[t] = true;
+          types.push(t);
+        }
+      });
+      types.sort();
+
+      var existingFilters = gridEl.parentNode.querySelector('.writings-filters');
+      if (existingFilters) existingFilters.remove();
+      var filtersDiv = document.createElement('div');
+      filtersDiv.className = 'writings-filters';
+      filtersDiv.setAttribute('role', 'tablist');
+      filtersDiv.setAttribute('aria-label', 'Filter by type');
+      var allBtn = '<button type="button" class="writings-filters__tab is-active" data-filter="all" role="tab" aria-selected="true">All</button>';
+      var typeBtns = types.map(function (t) {
+        return '<button type="button" class="writings-filters__tab" data-filter="' + escapeHtml(t) + '" role="tab" aria-selected="false">' + escapeHtml(t) + '</button>';
+      }).join('');
+      filtersDiv.innerHTML = allBtn + typeBtns;
+      gridEl.parentNode.insertBefore(filtersDiv, gridEl);
+
+      var categorySlug = (category.slug && String(category.slug)) || 'writings';
+      gridEl.className = 'writings-grid';
+      gridEl.setAttribute('aria-label', 'Writings');
+      gridEl.innerHTML = entries.map(function (entry) {
+        var entryId = entry.id != null ? String(entry.id) : '';
+        var entryHref = entryId ? 'entry.html?id=' + encodeURIComponent(entryId) + '&category=' + encodeURIComponent(categorySlug) : '#';
+        var title = escapeHtml(entry.title || entry.name || 'Untitled');
+        var typeStr = getEntryType(entry);
+        var typeEscaped = escapeHtml(typeStr);
+        var img = getImageUrl(entry);
+        if (img) img = escapeHtml(img);
+        var imgTag = img
+          ? '<img class="writings-card__cover" src="' + img + '" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.parentElement.classList.add(\'writings-card__cover-wrap--placeholder\')">'
+          : '';
+        var coverClass = 'writings-card__cover-wrap' + (img ? '' : ' writings-card__cover-wrap--placeholder');
+        return (
+          '<a class="writings-card" href="' + entryHref + '" data-type="' + typeEscaped + '">' +
+            '<div class="' + coverClass + '">' + imgTag + '</div>' +
+            '<p class="writings-card__name">' + title + '</p>' +
+            '<p class="writings-card__type">' + (typeEscaped || '—') + '</p>' +
+          '</a>'
+        );
+      }).join('');
+
+      filtersDiv.querySelectorAll('.writings-filters__tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var filter = btn.getAttribute('data-filter');
+          filtersDiv.querySelectorAll('.writings-filters__tab').forEach(function (b) {
+            b.classList.toggle('is-active', b.getAttribute('data-filter') === filter);
+            b.setAttribute('aria-selected', b.getAttribute('data-filter') === filter ? 'true' : 'false');
+          });
+          gridEl.querySelectorAll('.writings-card').forEach(function (card) {
+            var type = card.getAttribute('data-type');
+            var show = filter === 'all' || type === filter;
+            card.style.display = show ? '' : 'none';
+          });
+        });
+      });
+      return;
+    }
+
     if (entries[0] && window.console && window.console.log) {
       window.console.log('Category entry sample (check column names):', entries[0]);
       window.console.log('First image URL resolved:', getImageUrl(entries[0]));
     }
-    emptyEl.style.display = 'none';
+    gridEl.className = 'gallery-grid';
+    gridEl.setAttribute('aria-label', 'Gallery');
     gridEl.innerHTML = entries.map(function (entry) {
       var title = escapeHtml(entry.title || entry.name || 'Untitled');
       var year = entry.year || entry.date || entry.created_at;
@@ -232,6 +325,7 @@
     setBreadcrumb('Loading…');
     setLoading(true);
 
+    var currentCategory = null;
     fetchCategoryBySlug(slug)
       .then(function (category) {
         if (!category) {
@@ -240,14 +334,15 @@
           setEmpty('No category found for "' + slug + '". Check the slug in the URL.');
           return null;
         }
-        setTitle(category.name || slug);
-        setBreadcrumb(category.name || slug);
-        setIntro(category['tool-tip text'] || category.description_1 || '');
-        document.title = (category.name || slug) + ' – Creative Library';
+        currentCategory = category;
+        setTitle(displayCategoryName(category.name || slug));
+        setBreadcrumb(displayCategoryName(category.name || slug));
+        setIntro(category.description_1 || category['tool-tip text'] || '');
+        document.title = displayCategoryName(category.name || slug) + ' – Creative Library';
         return fetchEntriesByCategoryId(category.category_id);
       })
       .then(function (entries) {
-        if (entries !== undefined && entries !== null) renderGallery(entries);
+        if (entries !== undefined && entries !== null) renderGallery(entries, currentCategory);
       })
       .catch(function (err) {
         console.error('Category page error', err);

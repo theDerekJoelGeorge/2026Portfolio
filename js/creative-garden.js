@@ -39,13 +39,21 @@
       .replaceAll("'", '&#39;');
   }
 
+  function displayCategoryName(s) {
+    if (!s) return s;
+    const str = String(s);
+    if (str.toLowerCase() === 'writings') return 'Writings';
+    return str;
+  }
+
   function getCategoryLabel(cat) {
-    return cat.name || cat.title || cat.category_name || 'Category';
+    const raw = cat.name || cat.title || cat.category_name || 'Category';
+    return displayCategoryName(raw) || raw;
   }
 
   async function fetchCategories() {
     // categories table: category_id, name, slug, cover_color, writings_count, tool-tip, description_1, description_2
-    const select = encodeURIComponent('category_id,name,slug,cover_color,"tool-tip text"');
+    const select = encodeURIComponent('category_id,name,slug,cover_color,description_1,"tool-tip text"');
     const endpoint =
       `${url}/rest/v1/${table}` +
       `?select=${select}` +
