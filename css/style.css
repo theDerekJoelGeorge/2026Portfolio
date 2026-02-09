@@ -140,11 +140,12 @@ html {
   }
 }
 
-.theme-toggle:hover,
-.theme-toggle:focus {
+.theme-toggle:hover {
   opacity: 0.7;
-  outline: 0.125rem solid var(--color-heading);
-  outline-offset: 0.125rem;
+}
+
+.theme-toggle:focus {
+  outline: none;
 }
 
 .theme-toggle {
@@ -248,11 +249,12 @@ body.light-mode .sidebar-footer a.date-link {
   transition: none;
 }
 
-.mobile-theme-toggle:hover,
-.mobile-theme-toggle:focus {
+.mobile-theme-toggle:hover {
   opacity: 0.7;
-  outline: 0.125rem solid var(--color-heading);
-  outline-offset: 0.125rem;
+}
+
+.mobile-theme-toggle:focus {
+  outline: none;
 }
 
 /* Mobile Navigation Styles */
@@ -305,10 +307,6 @@ body.light-mode .mobile-theme-toggle::before {
   color: var(--color-heading-light);
 }
 
-body.light-mode .mobile-theme-toggle:hover,
-body.light-mode .mobile-theme-toggle:focus {
-  outline-color: var(--color-heading-light);
-}
 
 body.light-mode .mobile-nav {
   background: var(--bg-mobile-nav-light);
@@ -335,8 +333,6 @@ body.light-mode .mobile-nav-item:focus {
   outline-color: var(--color-heading-light);
 }
 
-body.light-mode .theme-toggle:hover,
-body.light-mode .theme-toggle:focus,
 body.light-mode .navigation a:hover,
 body.light-mode .navigation a:focus {
   outline-color: var(--color-heading-light);
