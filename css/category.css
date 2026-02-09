@@ -79,6 +79,63 @@ body.light-mode .category-intro {
   display: none;
 }
 
+/* Video Logs: vertical list — title, description, then embedded video per entry */
+.video-logs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.video-log-entry {
+  margin: 0;
+  padding: 0;
+}
+
+.video-log-entry__title {
+  margin: 1rem 0 0.5rem 0;
+  color: var(--color-heading);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+body.light-mode .video-log-entry__title {
+  color: var(--color-heading-light);
+}
+
+.video-log-entry__description {
+  margin: 0 0 1.25rem 0;
+  color: var(--color-subheading);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+body.light-mode .video-log-entry__description {
+  color: var(--color-subheading-light);
+}
+
+.video-log-entry__video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.video-log-entry__video iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+body.light-mode .video-log-entry__video {
+  background: rgba(0, 0, 0, 0.06);
+}
+
 /* Gallery grid: 6 columns; landscape span 3 (2 per row), portrait span 2 (3 per row) */
 .gallery-grid {
   display: grid;
@@ -420,6 +477,14 @@ body.light-mode .back-to-top:focus-visible {
 
   .category-title {
     font-size: 1.25rem;
+  }
+
+  .video-log-entry__title {
+    font-size: 1.25rem;
+  }
+
+  .video-log-entry__video {
+    border-radius: 0.5rem;
   }
 
   .writings-filters {

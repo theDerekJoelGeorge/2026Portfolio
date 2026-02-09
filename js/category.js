@@ -96,6 +96,47 @@
     return base + bucket + '/' + path;
   }
 
+  function getYouTubeEmbedUrl(url) {
+    if (!url || typeof url !== 'string') return '';
+    var raw = url.trim();
+    var videoId = null;
+    var youtuBeMatch = raw.match(/(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]{11})/);
+    if (youtuBeMatch && youtuBeMatch[1]) videoId = youtuBeMatch[1];
+    else {
+      var youtubeMatch = raw.match(/(?:https?:\/\/)?(?:www\.)?youtube\.com\/(?:watch\?v=|embed\/|v\/)([a-zA-Z0-9_-]{11})/);
+      if (youtubeMatch && youtubeMatch[1]) videoId = youtubeMatch[1];
+      else {
+        var vParamMatch = raw.match(/[?&]v=([a-zA-Z0-9_-]{11})/);
+        if (vParamMatch && vParamMatch[1]) videoId = vParamMatch[1];
+      }
+    }
+    return videoId ? 'https://www.youtube.com/embed/' + videoId : '';
+  }
+
+  function getEntryVideoUrl(entry) {
+    var raw = (entry.entry != null && entry.entry !== '') ? String(entry.entry).trim() : '';
+    if (!raw) raw = (entry.Entry || entry.video_url || entry.videoUrl || '').trim();
+    if (!raw) raw = (entry.body || entry.content || '').trim();
+    if (!raw) return '';
+    if (/youtube\.com|youtu\.be/i.test(raw)) return raw;
+    return '';
+  }
+
+  function getEntryDescriptionForDisplay(entry) {
+    var d = (entry.description || entry.Description || entry.desc || '').trim();
+    if (d) return String(d);
+    var b = (entry.body || entry.content || entry.text || entry.entry || entry.Entry || '').trim();
+    if (b && !/youtube\.com|youtu\.be/i.test(b)) return String(b);
+    return '';
+  }
+
+  function isVideoLogsCategory(category) {
+    if (!category) return false;
+    var slug = (category.slug && String(category.slug).toLowerCase()) || '';
+    var name = (category.name && String(category.name).toLowerCase()) || '';
+    return slug === 'video-logs' || slug === 'videos' || name.indexOf('video log') !== -1 || name === 'videos';
+  }
+
   function fetchCategoryBySlug(slug) {
     var select = encodeURIComponent('category_id,name,slug,"tool-tip text",description_1');
     var endpoint = url + '/rest/v1/' + categoriesTable +
@@ -227,6 +268,32 @@
           });
         });
       });
+      return;
+    }
+
+    if (isVideoLogsCategory(category)) {
+      gridEl.className = 'video-logs-list';
+      gridEl.setAttribute('aria-label', 'Video logs');
+      gridEl.innerHTML = entries.map(function (entry) {
+        var title = escapeHtml(entry.title || entry.name || entry.Title || 'Untitled');
+        var description = escapeHtml(getEntryDescriptionForDisplay(entry));
+        var videoUrl = getEntryVideoUrl(entry);
+        var embedUrl = videoUrl ? getYouTubeEmbedUrl(videoUrl) : '';
+        var embedHtml = embedUrl
+          ? '<div class="video-log-entry__video">' +
+              '<iframe title="YouTube video" src="' + escapeHtml(embedUrl) + '" width="100%" height="400" ' +
+              'style="border:0;border-radius:12px;" loading="lazy" ' +
+              'allow="fullscreen; autoplay; clipboard-write; encrypted-media; picture-in-picture" allowfullscreen></iframe>' +
+              '</div>'
+          : '';
+        return (
+          '<article class="video-log-entry">' +
+            embedHtml +
+            '<h2 class="video-log-entry__title">' + title + '</h2>' +
+            (description ? '<p class="video-log-entry__description">' + description + '</p>' : '') +
+          '</article>'
+        );
+      }).join('');
       return;
     }
 
