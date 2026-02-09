@@ -209,6 +209,7 @@
 
     setLoading(true);
     if (errorEl) errorEl.style.display = 'none';
+    if (typeof window.showLoader === 'function') window.showLoader();
 
     fetchEntryById(params.id)
       .then(function (entry) {
@@ -224,6 +225,7 @@
       })
       .finally(function () {
         setLoading(false);
+        if (typeof window.hideLoader === 'function') window.hideLoader();
       });
   }
 

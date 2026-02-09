@@ -145,6 +145,7 @@
 
   function attachTooltipListeners() {
     if (!foldersGrid) return;
+    if (!window.matchMedia('(hover: hover)').matches) return;
     var cursorTooltip = getCursorTooltip();
     var folders = foldersGrid.querySelectorAll('.folder[data-tooltip]');
     folders.forEach(function (folder) {
