@@ -1,0 +1,439 @@
+/* Style Styles */
+
+/* Color Variables */
+:root {
+  /* Text Colors */
+  --color-heading: #ffffff;
+  --color-heading-light: #1a1a1a;
+  --color-subheading: #8b8b8b;
+  --color-subheading-light: #666666;
+  --color-body: #8b8b8b;
+  --color-body-light: #666666;
+  --color-nav-link: #a0a0a0;
+  --color-nav-link-active: #ffffff;
+  --color-nav-link-light: #666666;
+  --color-nav-link-active-light: #1a1a1a;
+  --color-link: #4a9eff;
+  --color-link-light: #0066cc;
+  
+  /* Background Colors */
+  --bg-primary: #1E1E1E;
+  --bg-primary-light: #f5f5f5;
+  --bg-sidebar: #171717;
+  --bg-sidebar-light: #ffffff;
+  --bg-content: #1E1E1E;
+  --bg-content-light: #f5f5f5;
+  --bg-card: transparent;
+  --bg-card-light: transparent;
+  --bg-mobile-nav: rgba(30, 30, 30, 0.7);
+  --bg-mobile-nav-light: rgba(255, 255, 255, 0.7);
+  --bg-mobile-nav-active: rgba(255, 255, 255, 0.15);
+  --bg-mobile-nav-active-light: rgba(0, 0, 0, 0.8);
+  
+  /* Border Colors */
+  --border-sidebar-light: #e0e0e0;
+  --border-mobile-nav: rgba(255, 255, 255, 0.1);
+  --border-mobile-nav-light: rgba(0, 0, 0, 0.1);
+  --border-mobile-nav-active: rgba(255, 255, 255, 0.2);
+  --border-mobile-nav-active-light: rgba(0, 0, 0, 0.2);
+  
+  /* Shadow Colors */
+  --shadow-mobile-nav: rgba(0, 0, 0, 0.3);
+  --shadow-mobile-nav-light: rgba(0, 0, 0, 0.1);
+  --shadow-mobile-nav-inset: rgba(255, 255, 255, 0.1);
+  --shadow-mobile-nav-inset-light: rgba(255, 255, 255, 0.5);
+  
+  /* Accent Colors */
+  --accent-sun: #ffd700;
+  --accent-moon: #ff0000;
+  --accent-tooltip: rgba(0, 0, 0, 0.9);
+  --accent-tooltip-light: rgba(255, 255, 255, 0.9);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 16px;
+  color: var(--color-body);
+  background-color: var(--bg-primary);
+  overflow-x: hidden;
+}
+
+
+html {
+  font-size: 16px;
+}
+
+@media (max-width: 48rem) {
+  html {
+    font-size: 16px;
+  }
+  
+  body {
+    padding-top: 2rem;
+  }
+  
+  .content {
+    padding: 3rem !important;
+    padding-top: 2rem !important;
+  }
+}
+
+/* Sidebar Styles */
+.sidebar {
+  color: var(--color-heading);
+  transition: width 0.3s ease;
+}
+
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--color-heading);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.2s ease;
+  border-radius: 0.25rem;
+  flex-shrink: 0;
+  width: 2.25rem;
+  height: 2.25rem;
+  position: relative;
+}
+
+.theme-toggle::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background-color: var(--accent-tooltip);
+  color: var(--color-heading);
+  font-size: 0.75rem;
+  white-space: nowrap;
+  border-radius: 0.375rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  z-index: 1000;
+}
+
+.theme-toggle:hover::before {
+  opacity: 1;
+}
+
+.theme-toggle:hover .sun-icon circle {
+  fill: var(--accent-sun);
+  transition: fill 0.2s ease;
+}
+
+.theme-toggle:hover .moon-icon path {
+  fill: var(--accent-moon);
+  transition: fill 0.2s ease;
+}
+
+@media (max-width: 48rem) {
+  .theme-toggle::before {
+    display: none;
+  }
+}
+
+.theme-toggle:hover,
+.theme-toggle:focus {
+  opacity: 0.7;
+  outline: 0.125rem solid var(--color-heading);
+  outline-offset: 0.125rem;
+}
+
+.theme-toggle {
+  position: relative;
+  width: 2.25rem;
+  height: 2.25rem;
+}
+
+.theme-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: none;
+}
+
+
+/* Light Mode Styles */
+body.light-mode {
+  background-color: var(--bg-primary-light);
+  color: var(--color-heading-light);
+}
+
+body.light-mode .sidebar {
+  background-color: var(--bg-sidebar-light);
+  color: var(--color-heading-light);
+  border-right: 0.0625rem solid var(--border-sidebar-light);
+}
+
+.content {
+  padding: 6.5rem 15rem 3rem 15rem;
+}
+
+.content h1 {
+  margin-top: 0;
+}
+
+body.light-mode .content {
+  background-color: var(--bg-content-light);
+}
+
+
+
+
+
+body.light-mode .theme-toggle {
+  color: var(--color-heading-light);
+}
+
+body.light-mode .navigation a {
+  color: var(--color-nav-link-light);
+}
+
+body.light-mode .navigation a.active {
+  color: var(--color-nav-link-active-light);
+}
+
+body.light-mode .sidebar-footer {
+  color: var(--color-subheading-light);
+}
+
+body.light-mode .sidebar-footer a {
+  color: var(--color-subheading-light);
+}
+
+body.light-mode .sidebar-footer a.date-link {
+  color: var(--color-link-light);
+}
+
+/* Mobile Header */
+/* Mobile Header Styles */
+.mobile-header {
+  background: linear-gradient(to bottom, var(--bg-sidebar) 0%, rgba(23, 23, 23, 0.95) 50%, rgba(23, 23, 23, 0) 100%);
+  backdrop-filter: blur(0.5rem);
+}
+
+.mobile-theme-toggle {
+  background: none;
+  border: none;
+  color: var(--color-heading);
+  cursor: pointer;
+}
+
+.mobile-theme-toggle::before {
+  display: none;
+}
+
+.mobile-theme-toggle:hover .sun-icon circle {
+  fill: var(--accent-sun);
+  transition: fill 0.2s ease;
+}
+
+.mobile-theme-toggle:hover .moon-icon path {
+  fill: var(--accent-moon);
+  transition: fill 0.2s ease;
+}
+
+.mobile-theme-toggle svg {
+  transition: none;
+}
+
+.mobile-theme-toggle:hover,
+.mobile-theme-toggle:focus {
+  opacity: 0.7;
+  outline: 0.125rem solid var(--color-heading);
+  outline-offset: 0.125rem;
+}
+
+/* Mobile Navigation Styles */
+.mobile-nav {
+  background: var(--bg-mobile-nav);
+  backdrop-filter: blur(2rem) saturate(180%);
+  -webkit-backdrop-filter: blur(2rem) saturate(180%);
+  border-radius: 2rem;
+  border: 0.0625rem solid var(--border-mobile-nav);
+  box-shadow: 0 0.5rem 2rem var(--shadow-mobile-nav), inset 0 0.0625rem 0 var(--shadow-mobile-nav-inset);
+}
+
+.mobile-nav-item {
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.875rem;
+  border-radius: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 400;
+  background-color: transparent;
+}
+
+.mobile-nav-item.active {
+  background: var(--bg-mobile-nav-active);
+  color: var(--color-heading);
+  font-weight: 500;
+  border-radius: 1.5rem;
+  border: 0.0625rem solid var(--border-mobile-nav-active);
+  box-shadow: 0 0.125rem 0.5rem var(--shadow-mobile-nav), inset 0 0.0625rem 0 var(--shadow-mobile-nav-inset);
+}
+
+.mobile-nav-item:hover,
+.mobile-nav-item:focus {
+  color: var(--color-heading);
+  outline: 0.125rem solid var(--color-heading);
+  outline-offset: 0.125rem;
+}
+
+
+body.light-mode .mobile-header {
+  background: linear-gradient(to bottom, var(--bg-sidebar-light) 0%, rgba(255, 255, 255, 0.95) 50%, rgba(255, 255, 255, 0) 100%);
+}
+
+body.light-mode .mobile-theme-toggle {
+  color: var(--color-heading-light);
+}
+
+body.light-mode .mobile-theme-toggle::before {
+  background-color: var(--accent-tooltip-light);
+  color: var(--color-heading-light);
+}
+
+body.light-mode .mobile-theme-toggle:hover,
+body.light-mode .mobile-theme-toggle:focus {
+  outline-color: var(--color-heading-light);
+}
+
+body.light-mode .mobile-nav {
+  background: var(--bg-mobile-nav-light);
+  backdrop-filter: blur(2rem) saturate(180%);
+  -webkit-backdrop-filter: blur(2rem) saturate(180%);
+  border: 0.0625rem solid var(--border-mobile-nav-light);
+  box-shadow: 0 0.5rem 2rem var(--shadow-mobile-nav-light), inset 0 0.0625rem 0 var(--shadow-mobile-nav-inset-light);
+}
+
+body.light-mode .mobile-nav-item {
+  color: rgba(0, 0, 0, 0.6);
+}
+
+body.light-mode .mobile-nav-item.active {
+  background: var(--bg-mobile-nav-active-light);
+  color: var(--color-heading);
+  border: 0.0625rem solid var(--border-mobile-nav-active-light);
+  box-shadow: 0 0.125rem 0.5rem var(--shadow-mobile-nav-light), inset 0 0.0625rem 0 var(--shadow-mobile-nav-inset);
+}
+
+body.light-mode .mobile-nav-item:hover,
+body.light-mode .mobile-nav-item:focus {
+  color: var(--color-heading-light);
+  outline-color: var(--color-heading-light);
+}
+
+body.light-mode .theme-toggle:hover,
+body.light-mode .theme-toggle:focus,
+body.light-mode .navigation a:hover,
+body.light-mode .navigation a:focus {
+  outline-color: var(--color-heading-light);
+}
+
+
+.logo {
+  margin-top: 4rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-heading);
+}
+
+.logo img {
+  width: 2.5rem;
+  height: auto;
+  display: block;
+}
+
+/* Navigation Styles */
+.navigation {
+  flex: 1;
+}
+
+.navigation ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navigation a {
+  display: block;
+  color: var(--color-nav-link);
+  font-size: 1rem;
+  padding: 0.25rem 0;
+  font-weight: 400;
+  transition: opacity 0.2s ease;
+}
+
+.navigation a:hover,
+.navigation a:focus {
+  opacity: 0.8;
+  outline: none;
+}
+
+.navigation a.active {
+  font-weight: 700;
+  color: var(--color-nav-link-active);
+}
+
+/* Sidebar Footer Styles */
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 2rem;
+  font-size: 0.75rem;
+  color: var(--color-nav-link);
+  line-height: 1.5;
+  position: relative;
+}
+
+.sidebar-footer .theme-toggle {
+  position: absolute;
+  top: 2rem;
+  right: 0;
+  margin: 0;
+}
+
+.sidebar-footer p {
+  margin-bottom: 0.375rem;
+}
+
+.sidebar-footer a {
+  color: var(--color-nav-link);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.sidebar-footer a.date-link {
+  color: var(--color-link);
+  text-decoration: none;
+}
+
+.sidebar-footer a.date-link:hover,
+.sidebar-footer a.date-link:focus {
+  opacity: 0.8;
+  outline: 0.125rem solid var(--color-link);
+  outline-offset: 0.125rem;
+}
+
+.sidebar-footer a:not(.date-link) {
+  text-decoration: underline;
+}
+
+.sidebar-footer a:not(.date-link):hover,
+.sidebar-footer a:not(.date-link):focus {
+  opacity: 0.8;
+  outline: 0.125rem solid var(--color-nav-link);
+  outline-offset: 0.125rem;
+}

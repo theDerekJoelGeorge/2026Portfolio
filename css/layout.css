@@ -1,0 +1,141 @@
+/* Layout Styles */
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 16rem;
+  background-color: var(--bg-sidebar);
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem 2rem;
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+
+.content {
+  flex: 1;
+  background-color: var(--bg-content);
+  margin-left: 25rem;
+  margin-right: 10rem;
+  min-height: 100vh;
+  transition: margin-left 0.3s ease;
+  position: relative;
+  top: 0;
+  font-size: 1rem;
+  overflow-x: hidden;
+}
+
+
+/* Mobile Header Layout */
+.mobile-header {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.mobile-logo img {
+  width: 2rem;
+  height: auto;
+  display: block;
+}
+
+.mobile-theme-toggle {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  position: relative;
+}
+
+.mobile-theme-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Mobile Navigation Layout */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 30rem;
+  padding: 0.5rem;
+  justify-content: space-around;
+  align-items: center;
+  z-index: 1000;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.mobile-nav::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-nav-item {
+  padding: 0.5rem 0.75rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.mobile-nav-item.active {
+  padding: 0.5rem 1rem;
+}
+
+@media (min-width: 48.0625rem) {
+  .mobile-nav,
+  .mobile-header {
+    display: none !important;
+  }
+}
+
+@media (max-width: 48rem) {
+  .sidebar {
+    display: none;
+  }
+  
+  .content {
+    margin-bottom: 5rem !important;
+    padding: 2rem !important;
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+    padding-top: 2rem !important;
+  }
+  
+  .container {
+    flex-direction: column;
+    padding-top: 4rem;
+  }
+  
+  .mobile-nav,
+  .mobile-header {
+    display: flex;
+  }
+}

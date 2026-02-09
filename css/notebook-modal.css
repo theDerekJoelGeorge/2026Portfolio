@@ -1,0 +1,202 @@
+/* Notebook Detail View Styles */
+
+.notebook-detail-view {
+  width: 100%;
+}
+
+.notebook-detail__content {
+  position: relative;
+  background-color: #E8E8E8;
+  border-radius: 0.5rem;
+  width: 100%;
+  min-height: 40rem;
+  overflow: hidden;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Close Button */
+.notebook-detail__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: #DC3545;
+  color: #ffffff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s ease;
+  z-index: 10;
+}
+
+.notebook-detail__close:hover {
+  background-color: #C82333;
+}
+
+.notebook-detail__close-icon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* Body */
+.notebook-detail__body {
+  display: flex;
+  flex: 1;
+  min-height: 40rem;
+}
+
+.notebook-detail__left {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.notebook-detail__category-name {
+  color: #000000;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 0 1.5rem 0;
+}
+
+.notebook-detail__descriptions {
+  flex: 1;
+  margin-bottom: 1rem;
+}
+
+.notebook-detail__description {
+  color: #000000;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 1rem 0;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.notebook-detail__description:last-child {
+  margin-bottom: 0;
+}
+
+.notebook-detail__instruction {
+  color: #000000;
+  font-size: 0.75rem;
+  margin: auto 0 0 0;
+  opacity: 0.6;
+}
+
+.notebook-detail__right {
+  flex: 1;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5F5F5;
+}
+
+.notebook-detail__notebook-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.notebook-detail__notebook {
+  width: 12rem;
+  height: 16rem;
+  border-radius: 0.375rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.notebook-detail__notebook::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0.75rem;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 0.875rem,
+      radial-gradient(circle at 0.375rem 0.4375rem, rgba(255, 255, 255, 0.4) 0.1875rem, transparent 0.1875rem) 0.875rem,
+      radial-gradient(circle at 0.375rem 0.4375rem, rgba(255, 255, 255, 0.4) 0.1875rem, transparent 0.1875rem) 1rem
+    ),
+    var(--cover-color, #5B9BD5);
+  z-index: 2;
+  border-radius: 0.375rem 0 0 0.375rem;
+}
+
+.notebook-detail__notebook-title {
+  color: #000000;
+  font-family: 'Reenie Beanie', cursive;
+  font-size: 1.125rem;
+  font-weight: 400;
+  text-align: center;
+  padding: 0.125rem 0.375rem;
+  z-index: 3;
+  position: relative;
+  background-color: #F5F5F0;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 0.125rem,
+      rgba(0, 0, 0, 0.02) 0.125rem,
+      rgba(0, 0, 0, 0.02) 0.25rem
+    );
+  border-radius: 0.125rem;
+  width: fit-content;
+  margin: auto;
+  min-width: 4rem;
+  box-shadow: 
+    0 0.0625rem 0.125rem rgba(0, 0, 0, 0.1),
+    inset 0 0.0625rem 0 rgba(255, 255, 255, 0.5),
+    inset 0 -0.0625rem 0 rgba(0, 0, 0, 0.05);
+  border: 0.03125rem solid rgba(0, 0, 0, 0.08);
+  transform: rotate(-0.5deg);
+}
+
+/* Responsive */
+@media (max-width: 48rem) {
+  .notebook-detail__content {
+    min-height: auto;
+  }
+  
+  .notebook-detail__body {
+    flex-direction: column;
+    min-height: auto;
+  }
+  
+  .notebook-detail__left {
+    padding: 1.5rem;
+  }
+  
+  .notebook-detail__right {
+    padding: 1.5rem;
+  }
+  
+  .notebook-detail__close {
+    top: 0.5rem;
+    right: 0.5rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .notebook-detail__notebook {
+    width: 10rem;
+    height: 13rem;
+  }
+}
