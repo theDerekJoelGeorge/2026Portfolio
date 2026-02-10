@@ -12,7 +12,7 @@ body.light-mode .page-title {
 }
 
 .breadcrumbs {
-  max-width: 60rem;
+  max-width: 64rem;
   margin: 0 0 1.25rem 0;
 }
 
@@ -123,7 +123,7 @@ body.light-mode .back-to-top:focus-visible {
   color: var(--color-subheading);
   font-size: 1rem;
   line-height: 1.6;
-  max-width: 60rem;
+  max-width: 64rem;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -140,7 +140,7 @@ body.light-mode .page-intro {
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  max-width: 60rem;
+  max-width: 64rem;
 }
 
 .case-card {
@@ -237,7 +237,7 @@ body.light-mode .case-card__img--placeholder {
 
 .case-study__cover {
   width: 100%;
-  max-width: 60rem;
+  max-width: 64rem;
   height: 16rem;
   object-fit: cover;
   border-radius: 0.75rem;
@@ -257,7 +257,7 @@ body.light-mode .case-card__img--placeholder {
   gap: 1rem;
   align-items: baseline;
   flex-wrap: wrap;
-  max-width: 60rem;
+  max-width: 64rem;
   margin-bottom: 0.75rem;
 }
 
@@ -273,14 +273,14 @@ body.light-mode .case-card__img--placeholder {
 }
 
 .case-study__lead {
-  max-width: 60rem;
+  max-width: 64rem;
   line-height: 1.6;
   color: #8b8b8b;
   margin: 0 0 1.75rem 0;
 }
 
 .case-study__body {
-  max-width: 60rem;
+  max-width: 64rem;
 }
 
 .cs-section {
@@ -948,7 +948,7 @@ body.light-mode .cs-card__stat {
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 1rem;
-  max-width: 60rem;
+  max-width: 64rem;
   width: 100%;
   box-sizing: border-box;
 }

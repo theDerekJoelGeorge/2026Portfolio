@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/category.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -42,7 +43,12 @@
       </footer>
     </aside>
     <main class="content">
-      <!-- Main content area -->
+      <div class="category-page__inner">
+        <h1 class="category-title">About Me</h1>
+        <p id="aboutMeLoading" class="category-intro">Loading…</p>
+        <p id="aboutMeError" class="category-intro" style="display: none;"></p>
+        <div id="aboutMeContent" style="display: none;"></div>
+      </div>
     </main>
   </div>
   <header class="mobile-header">
@@ -68,6 +74,8 @@
     <a href="experiments.html" class="mobile-nav-item">Experiments</a>
   </nav>
   <script src="js/loader.js"></script>
+  <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/about-me.js"></script>
 </body>
 </html>

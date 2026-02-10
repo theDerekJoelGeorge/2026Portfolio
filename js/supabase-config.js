@@ -5,6 +5,8 @@ window.SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXB
 window.SUPABASE_PROJECTS_TABLE = 'projects';
 window.SUPABASE_CATEGORIES_TABLE = 'categories';
 window.SUPABASE_CATEGORY_ENTRIES_TABLE = 'category_entries';
+// About Me page: must match your Supabase table name exactly.
+window.SUPABASE_ABOUT_ME_TABLE = 'about_me';
 // If category_entries image URLs are Supabase Storage paths, set your bucket name (e.g. 'images', 'photos'):
 // window.SUPABASE_STORAGE_BUCKET = 'images';
 

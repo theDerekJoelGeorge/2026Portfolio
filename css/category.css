@@ -2,12 +2,12 @@
 
 /* Breadcrumb trail (same pattern as case studies) */
 .breadcrumbs {
-  max-width: 56rem;
+  max-width: 64rem;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1.25rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .breadcrumbs__list {
@@ -46,11 +46,11 @@ body.light-mode .breadcrumbs__current {
 
 /* Contained width: content centered with side margins */
 .category-page__inner {
-  max-width: 56rem;
+  max-width: 64rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .category-title {
@@ -77,6 +77,93 @@ body.light-mode .category-intro {
 
 .category-intro:empty {
   display: none;
+}
+
+/* About Me page: sections from Supabase (description_1, hero image, paragraph_2) */
+.about-me__section {
+  margin-bottom: 1rem;
+}
+.about-me__section:last-child {
+  margin-bottom: 0;
+}
+.about-me__description1,
+.about-me__paragraph2,
+.about-me__paragraph3,
+.about-me__paragraph4,
+.about-me__paragraph5 {
+  text-align: justify;
+}
+.about-me__subheading {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+body.light-mode .about-me__subheading {
+  color: var(--color-heading-light);
+}
+.about-me__hero-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+/* About Me: horizontal scrolling slideshow (img1–img6) */
+.about-me__slideshow-wrap {
+  margin-bottom: 1rem;
+}
+.about-me__slideshow {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  margin-bottom: 0.75rem;
+}
+.about-me__slideshow--auto {
+  overflow: hidden;
+}
+.about-me__slideshow--auto .about-me__slideshow-track {
+  animation: about-me-slide 40s linear infinite;
+  width: max-content;
+}
+.about-me__slideshow--auto:hover .about-me__slideshow-track {
+  animation-play-state: paused;
+}
+@keyframes about-me-slide {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.about-me__slideshow::-webkit-scrollbar {
+  display: none;
+}
+.about-me__slideshow-track {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 0.25rem;
+}
+.about-me__slide {
+  flex-shrink: 0;
+  width: 280px;
+}
+.about-me__slide-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+.about-me__slideshow-caption {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+body.light-mode .about-me__slideshow-caption {
+  color: var(--color-heading-light);
 }
 
 /* Video Logs: vertical list — title, description, then embedded video per entry */
@@ -693,9 +780,14 @@ body.light-mode .back-to-top:focus-visible {
 }
 
 @media (max-width: 48rem) {
+  .breadcrumbs {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+
   .category-page__inner {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .category-title {

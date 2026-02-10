@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  max-width: 48rem;
+  max-width: 56rem;
 }
 
 .home-hero__avatar {
@@ -44,7 +44,7 @@
 
 .home-intro {
   margin-top: 1.25rem;
-  max-width: 48rem;
+  max-width: 56rem;
   text-align: justify;
   text-justify: inter-word;
   line-height: 1.6;
@@ -91,7 +91,7 @@
 
 /* Spotify widget */
 .spotify-widget {
-  max-width: 48rem;
+  max-width: 56rem;
   margin-top: 0.75rem;
 }
 

@@ -1,11 +1,11 @@
 /* Entry (article) detail page */
 
 .entry-article {
-  max-width: 56rem;
+  max-width: 64rem;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .entry-loading,
@@ -120,8 +120,8 @@ body.light-mode .entry-body {
 
 @media (max-width: 48rem) {
   .entry-article {
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
   }
 
   .entry-title {
