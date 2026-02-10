@@ -121,7 +121,7 @@
   function shouldRunInitialLoader() {
     var path = window.location.pathname || '';
     var page = path.split('/').pop() || '';
-    var noLoaderPages = ['archives.html', 'experiments.html'];
+    var noLoaderPages = ['about-me.html', 'experiments.html'];
     return noLoaderPages.indexOf(page) === -1;
   }
 

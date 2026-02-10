@@ -335,8 +335,36 @@ body.light-mode .gallery-column-switcher__btn.is-active {
   object-fit: contain;
 }
 
-/* IG Post, Logo, etc.: 1 column × 1 row (normal size) */
-.gallery-grid--graphic .gallery-item:not([data-type="Poster"]):not([data-type="Posters"]):not([data-type="poster"]):not([data-type="posters"]) {
+/* IG Post: fixed 1:1 box so all IG Posts are the same size */
+.gallery-grid--graphic .gallery-item[data-type="IG Post"],
+.gallery-grid--graphic .gallery-item[data-type="IG post"] {
+  grid-column: span 1;
+  grid-row: span 1;
+}
+
+.gallery-grid--graphic .gallery-item[data-type="IG Post"] .gallery-item__link,
+.gallery-grid--graphic .gallery-item[data-type="IG post"] .gallery-item__link {
+  display: block;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.gallery-grid--graphic .gallery-item[data-type="IG Post"] .gallery-item__image-wrap,
+.gallery-grid--graphic .gallery-item[data-type="IG post"] .gallery-item__image-wrap {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: unset;
+}
+
+.gallery-grid--graphic .gallery-item[data-type="IG Post"] .gallery-item__image,
+.gallery-grid--graphic .gallery-item[data-type="IG post"] .gallery-item__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Logo and other non-poster: 1 column × 1 row (4:3 from base styles) */
+.gallery-grid--graphic .gallery-item:not([data-type="Poster"]):not([data-type="Posters"]):not([data-type="poster"]):not([data-type="posters"]):not([data-type="IG Post"]):not([data-type="IG post"]) {
   grid-column: span 1;
   grid-row: span 1;
 }
