@@ -200,4 +200,17 @@
   } else {
     run();
   }
+
+  var backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    function toggleBackToTop() {
+      var y = window.scrollY || document.documentElement.scrollTop || 0;
+      backToTop.classList.toggle('is-visible', y > 400);
+    }
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    toggleBackToTop();
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 })();
