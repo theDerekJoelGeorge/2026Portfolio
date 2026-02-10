@@ -222,6 +222,16 @@ body.light-mode .sidebar-footer a.date-link {
   color: var(--color-link-light);
 }
 
+body.light-mode .sidebar-footer__issues-tooltip {
+  background-color: var(--bg-content-light);
+  color: var(--color-heading-light);
+}
+
+body.light-mode .sidebar-footer__issues-tooltip-title {
+  color: var(--color-heading-light);
+}
+
+
 /* Mobile Header */
 /* Mobile Header Styles */
 .mobile-header {
@@ -399,15 +409,128 @@ body.light-mode .navigation a:focus {
   position: relative;
 }
 
-.sidebar-footer .theme-toggle {
+.sidebar-footer__text-wrap {
+  position: relative;
+  padding-right: 2.75rem;
+}
+
+.sidebar-footer__text-wrap .theme-toggle {
   position: absolute;
-  top: 2rem;
+  top: 50%;
   right: 0;
+  transform: translateY(-50%);
   margin: 0;
 }
 
 .sidebar-footer p {
   margin-bottom: 0.375rem;
+}
+
+/* Current Issues: icon button + hover tooltip */
+.sidebar-footer__issues-wrap {
+  position: relative;
+  display: inline-block;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  overflow: visible;
+}
+
+.sidebar-footer__issues-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  padding: 0;
+  background: #c62828;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.sidebar-footer__issues-btn:hover,
+.sidebar-footer__issues-btn:focus {
+  opacity: 0.95;
+  outline: none;
+}
+
+.sidebar-footer__issues-btn:focus-visible {
+  outline: 0.125rem solid rgba(255, 255, 255, 0.8);
+  outline-offset: 0.125rem;
+}
+
+.sidebar-footer__issues-icon {
+  color: #ffffff;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* Tooltip: same style as theme-toggle tooltip (accent-tooltip, rounded, no border) */
+.sidebar-footer__issues-tooltip {
+  display: block;
+  position: absolute;
+  bottom: 100%;
+  right: 0;
+  margin-bottom: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  min-width: 10rem;
+  max-width: 12rem;
+  background-color: var(--accent-tooltip);
+  color: var(--color-heading);
+  border-radius: 0.375rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: left;
+  white-space: normal;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+.sidebar-footer__issues-tooltip.is-visible {
+  position: fixed;
+  top: var(--tooltip-top, 50%);
+  left: var(--tooltip-left, 50%);
+  bottom: auto;
+  right: auto;
+  margin-bottom: 0;
+  transform: translateY(-100%);
+}
+
+.sidebar-footer__issues-tooltip-title {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+.sidebar-footer__issues-tooltip ul {
+  margin: 0;
+  padding-left: 1.125rem;
+  list-style: disc;
+  list-style-type: disc;
+}
+
+.sidebar-footer__issues-tooltip li {
+  margin-bottom: 0.25rem;
+}
+
+.sidebar-footer__issues-tooltip li:last-child {
+  margin-bottom: 0;
+}
+
+/* JS adds .is-visible; keep hover as fallback */
+.sidebar-footer__issues-tooltip.is-visible,
+.sidebar-footer__issues-wrap:hover .sidebar-footer__issues-tooltip,
+.sidebar-footer__issues-wrap:focus-within .sidebar-footer__issues-tooltip {
+  visibility: visible;
+  opacity: 1;
 }
 
 .sidebar-footer a {

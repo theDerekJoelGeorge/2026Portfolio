@@ -172,4 +172,23 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.matchMedia('(max-width: 48rem)').matches) centerActive();
     });
   }
+
+  // Current Issues tooltip: show on button hover/focus (use fixed position so it isn't clipped by sidebar)
+  const issuesBtn = document.querySelector('.sidebar-footer__issues-btn');
+  const issuesTooltip = document.getElementById('sidebar-issues-tooltip');
+  const issuesWrap = document.querySelector('.sidebar-footer__issues-wrap');
+  if (issuesBtn && issuesTooltip && issuesWrap) {
+    const showTooltip = () => {
+      const rect = issuesBtn.getBoundingClientRect();
+      const gap = 8;
+      issuesTooltip.style.setProperty('--tooltip-top', (rect.top - gap) + 'px');
+      issuesTooltip.style.setProperty('--tooltip-left', rect.left + 'px');
+      issuesTooltip.classList.add('is-visible');
+    };
+    const hideTooltip = () => issuesTooltip.classList.remove('is-visible');
+    issuesBtn.addEventListener('mouseenter', showTooltip);
+    issuesBtn.addEventListener('focus', showTooltip);
+    issuesWrap.addEventListener('mouseleave', hideTooltip);
+    issuesBtn.addEventListener('blur', hideTooltip);
+  }
 });
