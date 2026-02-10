@@ -137,6 +137,13 @@
     return slug === 'video-logs' || slug === 'videos' || name.indexOf('video log') !== -1 || name === 'videos';
   }
 
+  function isGraphicDesignCategory(category) {
+    if (!category) return false;
+    var slug = (category.slug && String(category.slug).toLowerCase()) || '';
+    var name = (category.name && String(category.name).toLowerCase()) || '';
+    return slug === 'graphic-design' || slug === 'graphic design' || name.indexOf('graphic design') !== -1;
+  }
+
   function fetchCategoryBySlug(slug) {
     var select = encodeURIComponent('category_id,name,slug,"tool-tip text",description_1');
     var endpoint = url + '/rest/v1/' + categoriesTable +
@@ -297,6 +304,117 @@
       return;
     }
 
+    if (isGraphicDesignCategory(category)) {
+      var types = [];
+      var typeSet = {};
+      entries.forEach(function (entry) {
+        var t = getEntryType(entry);
+        if (t && !typeSet[t]) {
+          typeSet[t] = true;
+          types.push(t);
+        }
+      });
+      types.sort();
+
+      var existingToolbar = gridEl.parentNode.querySelector('.gallery-toolbar');
+      if (existingToolbar) existingToolbar.remove();
+
+      var savedCols = 2;
+      try {
+        var stored = window.sessionStorage.getItem('graphicDesignColumns');
+        if (stored === '2' || stored === '3') savedCols = parseInt(stored, 10);
+      } catch (e) {}
+
+      var toolbar = document.createElement('div');
+      toolbar.className = 'gallery-toolbar';
+      toolbar.innerHTML =
+        '<div class="writings-filters" role="tablist" aria-label="Filter by type">' +
+          '<button type="button" class="writings-filters__tab is-active" data-filter="all" role="tab" aria-selected="true">All</button>' +
+          types.map(function (t) {
+            return '<button type="button" class="writings-filters__tab" data-filter="' + escapeHtml(t) + '" role="tab" aria-selected="false">' + escapeHtml(t) + '</button>';
+          }).join('') +
+        '</div>' +
+        '<div class="gallery-column-switcher" aria-label="2 or 3 columns">' +
+          '<div class="gallery-column-switcher__buttons">' +
+            '<button type="button" class="gallery-column-switcher__btn' + (savedCols === 2 ? ' is-active' : '') + '" data-cols="2" aria-pressed="' + (savedCols === 2 ? 'true' : 'false') + '" title="2 columns">' +
+              '<span class="gallery-column-switcher__icon"><svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="4" height="4" x="0" y="0" rx="0.5" fill="currentColor"/><rect width="4" height="4" x="5" y="0" rx="0.5" fill="currentColor"/><rect width="4" height="4" x="0" y="5" rx="0.5" fill="currentColor"/><rect width="4" height="4" x="5" y="5" rx="0.5" fill="currentColor"/></svg></span></button>' +
+            '<button type="button" class="gallery-column-switcher__btn' + (savedCols === 3 ? ' is-active' : '') + '" data-cols="3" aria-pressed="' + (savedCols === 3 ? 'true' : 'false') + '" title="3 columns">' +
+              '<span class="gallery-column-switcher__icon"><svg width="14" height="9" viewBox="0 0 14 9" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="4" height="4" x="0" y="0" rx="0.5" fill="currentColor"/><rect width="4" height="4" x="5" y="0" rx="0.5" fill="currentColor"/><rect width="4" height="4" x="10" y="0" rx="0.5" fill="currentColor"/><rect width="4" height="4" x="0" y="5" rx="0.5" fill="currentColor"/><rect width="4" height="4" x="5" y="5" rx="0.5" fill="currentColor"/><rect width="4" height="4" x="10" y="5" rx="0.5" fill="currentColor"/></svg></span></button>' +
+          '</div>' +
+        '</div>';
+      gridEl.parentNode.insertBefore(toolbar, gridEl);
+
+      var filtersDiv = toolbar.querySelector('.writings-filters');
+      var colSwitcher = toolbar.querySelector('.gallery-column-switcher');
+
+      function setGridColumns(n) {
+        gridEl.classList.remove('gallery-grid--cols-2', 'gallery-grid--cols-3');
+        gridEl.classList.add('gallery-grid--cols-' + n);
+        colSwitcher.querySelectorAll('.gallery-column-switcher__btn').forEach(function (b) {
+          var active = b.getAttribute('data-cols') === String(n);
+          b.classList.toggle('is-active', active);
+          b.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        try { window.sessionStorage.setItem('graphicDesignColumns', String(n)); } catch (e) {}
+      }
+      colSwitcher.querySelectorAll('.gallery-column-switcher__btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          setGridColumns(parseInt(btn.getAttribute('data-cols'), 10));
+        });
+      });
+
+      var categorySlug = (category.slug && String(category.slug)) || 'graphic-design';
+      gridEl.className = 'gallery-grid gallery-grid--graphic gallery-grid--cols-' + savedCols;
+      gridEl.setAttribute('aria-label', 'Gallery');
+      gridEl.innerHTML = entries.map(function (entry) {
+        var entryId = entry.id != null ? String(entry.id) : (entry.entry_id != null ? String(entry.entry_id) : '');
+        var entryHref = entryId ? 'entry.html?id=' + encodeURIComponent(entryId) + '&category=' + encodeURIComponent(categorySlug) : '#';
+        var title = escapeHtml(entry.title || entry.name || 'Untitled');
+        var typeStr = getEntryType(entry);
+        var typeEscaped = escapeHtml(typeStr);
+        var year = entry.year || entry.date || entry.created_at;
+        if (year && typeof year === 'string' && year.length > 4) year = year.slice(0, 4);
+        var yearStr = year ? escapeHtml(String(year)) : '';
+        var img = getImageUrl(entry);
+        if (img) img = escapeHtml(img);
+        var imgTag = img
+          ? '<img class="gallery-item__image" src="' + img + '" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display=\'none\'">'
+          : '<div class="gallery-item__image gallery-item__image--placeholder" aria-hidden="true"></div>';
+        var overlay = '<span class="gallery-item__overlay">' +
+          '<span class="gallery-item__title">' + title + '</span>' +
+          (yearStr ? '<span class="gallery-item__year">' + yearStr + '</span>' : '') +
+          '</span>';
+        return (
+          '<article class="gallery-item gallery-item--landscape" data-type="' + typeEscaped + '">' +
+            '<a class="gallery-item__link" href="' + entryHref + '">' +
+              '<span class="gallery-item__image-wrap">' + imgTag + overlay + '</span>' +
+            '</a>' +
+            '<p class="gallery-item__caption">' + title + '</p>' +
+          '</article>'
+        );
+      }).join('');
+
+      filtersDiv.querySelectorAll('.writings-filters__tab').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var filter = btn.getAttribute('data-filter');
+          filtersDiv.querySelectorAll('.writings-filters__tab').forEach(function (b) {
+            b.classList.toggle('is-active', b.getAttribute('data-filter') === filter);
+            b.setAttribute('aria-selected', b.getAttribute('data-filter') === filter ? 'true' : 'false');
+          });
+          gridEl.querySelectorAll('.gallery-item').forEach(function (article) {
+            var type = article.getAttribute('data-type');
+            var show = filter === 'all' || type === filter;
+            article.style.display = show ? '' : 'none';
+          });
+        });
+      });
+
+      initCategoryImageModal();
+      attachImageOrientationListeners();
+      attachCategoryGalleryModal();
+      return;
+    }
+
     if (entries[0] && window.console && window.console.log) {
       window.console.log('Category entry sample (check column names):', entries[0]);
       window.console.log('First image URL resolved:', getImageUrl(entries[0]));
@@ -304,6 +422,9 @@
     gridEl.className = 'gallery-grid';
     gridEl.setAttribute('aria-label', 'Gallery');
     gridEl.innerHTML = entries.map(function (entry) {
+      var entryId = entry.id != null ? String(entry.id) : (entry.entry_id != null ? String(entry.entry_id) : '');
+      var categorySlug = (category.slug && String(category.slug)) || '';
+      var entryHref = entryId ? 'entry.html?id=' + encodeURIComponent(entryId) + '&category=' + encodeURIComponent(categorySlug) : '#';
       var title = escapeHtml(entry.title || entry.name || 'Untitled');
       var year = entry.year || entry.date || entry.created_at;
       if (year && typeof year === 'string' && year.length > 4) year = year.slice(0, 4);
@@ -319,7 +440,7 @@
         '</span>';
       return (
         '<article class="gallery-item gallery-item--landscape">' +
-          '<a class="gallery-item__link" href="#">' +
+          '<a class="gallery-item__link" href="' + entryHref + '">' +
             '<span class="gallery-item__image-wrap">' + imgTag + overlay + '</span>' +
           '</a>' +
           '<p class="gallery-item__caption">' + title + '</p>' +
@@ -327,7 +448,128 @@
       );
     }).join('');
 
+    initCategoryImageModal();
     attachImageOrientationListeners();
+    attachCategoryGalleryModal();
+  }
+
+  var openCategoryImageModal;
+
+  function initCategoryImageModal() {
+    if (document.getElementById('category-image-modal')) return;
+    var modal = document.createElement('div');
+    modal.id = 'category-image-modal';
+    modal.className = 'category-image-modal';
+    modal.innerHTML =
+      '<div class="category-image-modal__overlay"></div>' +
+      '<div class="category-image-modal__content">' +
+        '<img class="category-image-modal__img" src="" alt="">' +
+        '<p class="category-image-modal__title" id="categoryImageModalTitle"></p>' +
+      '</div>' +
+      '<button class="category-image-modal__close" aria-label="Close image">×</button>' +
+      '<button class="category-image-modal__prev" aria-label="Previous image">‹</button>' +
+      '<button class="category-image-modal__next" aria-label="Next image">›</button>';
+    document.body.appendChild(modal);
+
+    var modalImg = modal.querySelector('.category-image-modal__img');
+    var modalTitleEl = modal.querySelector('.category-image-modal__title');
+    var closeBtn = modal.querySelector('.category-image-modal__close');
+    var prevBtn = modal.querySelector('.category-image-modal__prev');
+    var nextBtn = modal.querySelector('.category-image-modal__next');
+    var overlay = modal.querySelector('.category-image-modal__overlay');
+
+    var currentImages = [];
+    var currentIndex = 0;
+
+    function updateButtons() {
+      if (currentImages.length <= 1) {
+        prevBtn.style.display = 'none';
+        nextBtn.style.display = 'none';
+      } else {
+        prevBtn.style.display = 'flex';
+        nextBtn.style.display = 'flex';
+      }
+    }
+
+    function showImage(index) {
+      if (index < 0 || index >= currentImages.length) return;
+      currentIndex = index;
+      var imgData = currentImages[index];
+      modalImg.src = imgData.src;
+      modalImg.alt = imgData.alt || 'Fullscreen image';
+      if (modalTitleEl) {
+        modalTitleEl.textContent = imgData.title || '';
+        modalTitleEl.style.display = imgData.title ? '' : 'none';
+      }
+      updateButtons();
+    }
+
+    openCategoryImageModal = function (images, startIndex) {
+      if (!images || images.length === 0) return;
+      currentImages = images;
+      currentIndex = startIndex != null ? startIndex : 0;
+      showImage(currentIndex);
+      modal.classList.add('category-image-modal--active');
+      document.body.style.overflow = 'hidden';
+    };
+
+    function closeModal() {
+      modal.classList.remove('category-image-modal--active');
+      document.body.style.overflow = '';
+      if (modalTitleEl) modalTitleEl.textContent = '';
+      currentImages = [];
+      currentIndex = 0;
+    }
+
+    if (closeBtn) closeBtn.addEventListener('click', function (e) { e.stopPropagation(); closeModal(); });
+    if (prevBtn) prevBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (currentImages.length > 1) showImage((currentIndex - 1 + currentImages.length) % currentImages.length);
+    });
+    if (nextBtn) nextBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (currentImages.length > 1) showImage((currentIndex + 1) % currentImages.length);
+    });
+    if (overlay) overlay.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', function (e) {
+      if (!modal.classList.contains('category-image-modal--active')) return;
+      if (e.key === 'Escape') closeModal();
+      else if (e.key === 'ArrowLeft' && currentImages.length > 1) showImage((currentIndex - 1 + currentImages.length) % currentImages.length);
+      else if (e.key === 'ArrowRight' && currentImages.length > 1) showImage((currentIndex + 1) % currentImages.length);
+    });
+  }
+
+  function attachCategoryGalleryModal() {
+    if (!gridEl || !openCategoryImageModal) return;
+    var items = gridEl.querySelectorAll('.gallery-item');
+    var images = [];
+    items.forEach(function (article) {
+      var img = article.querySelector('.gallery-item__image');
+      var caption = article.querySelector('.gallery-item__caption');
+      if (img && img.src) {
+        images.push({
+          src: img.src || img.getAttribute('src'),
+          alt: img.alt || '',
+          title: caption ? caption.textContent.trim() : ''
+        });
+      }
+    });
+    items.forEach(function (article) {
+      var link = article.querySelector('.gallery-item__link');
+      var img = article.querySelector('.gallery-item__image');
+      if (!link || !img || !img.src) return;
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        var src = img.src || img.getAttribute('src');
+        if (!src) return;
+        var idx = 0;
+        for (var i = 0; i < images.length; i++) {
+          if (images[i].src === src) { idx = i; break; }
+        }
+        openCategoryImageModal(images, idx);
+      });
+    });
   }
 
   function attachImageOrientationListeners() {
