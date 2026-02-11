@@ -90,6 +90,8 @@
     var paragraph3 = getText(row, ['paragraph 3', 'paragraph_3', 'paragraph3', 'description_3', 'description3']);
     var paragraph4 = getText(row, ['paragraph 4', 'paragraph_4', 'paragraph4', 'description_4', 'description4']);
     var paragraph5 = getText(row, ['paragraph 5', 'paragraph_5', 'paragraph5', 'description_5', 'description5']);
+    var tldr1 = getText(row, ['tldr-1', 'tldr_1', 'tldr1']);
+    var tldr2 = getText(row, ['tldr-2', 'tldr_2', 'tldr2']);
     var heroUrl = getHeroImageUrl(row);
     var slideUrls = getSlideImageUrls(row);
     var slideUrlsSecond = getSlideImageUrlsSecond(row);
@@ -120,6 +122,9 @@
     if (paragraph3) {
       parts.push('<div class="about-me__section about-me__paragraph3 category-intro">' + escapeHtml(paragraph3) + '</div>');
     }
+    if (tldr1) {
+      parts.push('<div class="about-me__section"><div class="about-me__tldr">' + escapeHtml(tldr1) + '</div></div>');
+    }
 
     // 5. Auto-scrolling slideshow (img1–img6), track duplicated for infinite loop
     if (slideUrls.length > 0) {
@@ -144,6 +149,9 @@
     // 7. Paragraph 5
     if (paragraph5) {
       parts.push('<div class="about-me__section about-me__paragraph5 category-intro">' + escapeHtml(paragraph5) + '</div>');
+    }
+    if (tldr2) {
+      parts.push('<div class="about-me__section"><div class="about-me__tldr">' + escapeHtml(tldr2) + '</div></div>');
     }
 
     // 8. Second auto-scrolling slideshow (img7–img10)

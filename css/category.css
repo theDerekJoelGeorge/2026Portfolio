@@ -93,6 +93,25 @@ body.light-mode .category-intro {
 .about-me__paragraph5 {
   text-align: justify;
 }
+
+.about-me__tldr {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-heading);
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.375rem;
+}
+
+body.light-mode .about-me__tldr {
+  color: var(--color-heading-light);
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.18);
+}
+
 .about-me__subheading {
   margin: 0 0 0.5rem 0;
   font-size: 1.125rem;
