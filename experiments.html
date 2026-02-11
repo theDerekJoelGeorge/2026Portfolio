@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/experiments.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -43,7 +44,7 @@
         </p>
         <div class="sidebar-footer__text-wrap">
           <p>Last Updated<br><a href="#" class="date-link"></a></p>
-          <p><a href="#">Report an Issue</a></p>
+          <p><a href="#" class="report-issue-link">Report an Issue</a></p>
           <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
             <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
@@ -57,7 +58,24 @@
       </footer>
     </aside>
     <main class="content">
-      <!-- Main content area -->
+      <h1 class="page-title">Experiments</h1>
+      <p class="page-intro">This is going to be a collection of my experiments and side projects. I'm currently working on a few projects, but I'm not sure if its ready to be shared yet.</p>
+      <p class="page-intro">In the meantime, enjoy this manifestation of Arsenal winning the Premier League in the eyes of multiple AI-powered video generation platforms.</p>
+
+      <h2 class="experiments-subheading">MY PROMPT</h2>
+      <p class="experiments-prompt">Arsenal wins the Premier League 2025-2026.</p>
+
+      <div class="experiments-videos">
+        <figure class="experiments-video-wrap">
+          <figcaption class="experiments-video-caption">Grok</figcaption>
+          <video class="experiments-video" src="images/grok.mp4" controls playsinline preload="auto" autoplay loop muted aria-label="Grok generated video"></video>
+        </figure>
+        <figure class="experiments-video-wrap">
+          <figcaption class="experiments-video-caption">Sora</figcaption>
+          <video class="experiments-video" src="images/sora.mp4" controls playsinline preload="auto" autoplay loop muted aria-label="Sora generated video"></video>
+        </figure>
+      </div>
+
     </main>
   </div>
   <header class="mobile-header">
@@ -83,6 +101,7 @@
     <a href="experiments.html" class="mobile-nav-item active">Experiments</a>
   </nav>
   <script src="js/loader.js"></script>
+  <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

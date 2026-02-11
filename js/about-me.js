@@ -170,6 +170,7 @@
     }
 
     showLoading(true);
+    if (typeof window.showLoader === 'function') window.showLoader();
 
     var endpoint = url + '/rest/v1/' + encodeURIComponent(table) + '?select=*&limit=1';
     fetch(endpoint, {
@@ -192,6 +193,9 @@
       .catch(function (err) {
         showLoading(false);
         showError(err && err.message ? err.message : 'Failed to load About Me.');
+      })
+      .finally(function () {
+        if (typeof window.hideLoader === 'function') window.hideLoader();
       });
   }
 

@@ -45,7 +45,7 @@
         </p>
         <div class="sidebar-footer__text-wrap">
           <p>Last Updated<br><a href="#" class="date-link"></a></p>
-          <p><a href="#">Report an Issue</a></p>
+          <p><a href="#" class="report-issue-link">Report an Issue</a></p>
           <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
             <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
@@ -62,14 +62,27 @@
       <section class="home-hero" aria-label="Intro">
         <img class="home-hero__avatar" src="images/Derek_Joel_George.jpg" alt="Derek Joel George">
 
-        <div class="home-hero__meta">
-          <div class="home-hero__name">Derek Joel George</div>
-          <div class="home-hero__role">PRODUCT DESIGNER</div>
+        <div class="home-hero__right">
+          <div class="home-hero__meta">
+            <div class="home-hero__name">Derek Joel George</div>
+            <div class="home-hero__role">PRODUCT DESIGNER</div>
+          </div>
+          <span class="home-hero__location-wrap" tabindex="0">
+            <span class="home-hero__location" aria-label="Based in Brisbane, Australia">
+              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+              Brisbane, Australia
+            </span>
+            <span class="home-hero__location-tooltip" role="tooltip" id="brisbaneTimeTooltip"></span>
+          </span>
         </div>
       </section>
 
       <p class="home-intro">
         I'm a UX/Product Designer transitioning from a background of consulting into human-centered design. Through my design degree and project work, I've built strong foundations in UX research, interaction design, prototyping, and visual design.
+      </p>
+
+      <p class="home-intro">
+        Now I'm on the hunt to find my first UX/Product Designer role. Having built a solid foundation in design through my studies, I want to translate that learning into practice. I'll grow through hands-on real-world projects as well as learn from experienced designers and improve through practice and feedback.
       </p>
 
       <p class="home-intro">
@@ -79,29 +92,37 @@
       <h2 class="home-subheading">CONNECT WITH ME</h2>
       
       <div class="social-icons-row">
-        <a href="#" class="social-icon-link" aria-label="LinkedIn">
+        <a id="home-link-linkedin" href="#" class="social-icon-link" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
           <i class="fab fa-linkedin-in"></i>
         </a>
-        <a href="#" class="social-icon-link" aria-label="Behance">
+        <a id="home-link-behance" href="#" class="social-icon-link" target="_blank" rel="noopener noreferrer" aria-label="Behance">
           <i class="fab fa-behance"></i>
         </a>
-        <a href="#" class="social-icon-link" aria-label="YouTube">
+        <a id="home-link-youtube" href="#" class="social-icon-link" target="_blank" rel="noopener noreferrer" aria-label="YouTube">
           <i class="fab fa-youtube"></i>
         </a>
-        <a href="#" class="social-icon-link" aria-label="Email">
-          <i class="far fa-envelope"></i>
-        </a>
-        <a href="#" class="social-icon-link" aria-label="Phone">
-          <i class="fas fa-phone"></i>
-        </a>
+        <span class="social-copy-wrap">
+          <button type="button" class="social-icon-link social-copy-btn" id="home-copy-email" aria-label="Copy email" aria-describedby="home-email-tooltip">
+            <i class="far fa-envelope"></i>
+          </button>
+          <span id="home-email-tooltip" class="social-copy-tooltip" role="tooltip">Click to copy</span>
+        </span>
+        <span class="social-copy-wrap">
+          <button type="button" class="social-icon-link social-copy-btn" id="home-copy-phone" aria-label="Copy phone number" aria-describedby="home-phone-tooltip">
+            <i class="fas fa-phone"></i>
+          </button>
+          <span id="home-phone-tooltip" class="social-copy-tooltip" role="tooltip">Click to copy</span>
+        </span>
       </div>
 
-      <div class="home-playlist">
-        <h2 class="home-subheading"> HERE IS THE PLAYLIST I AM CURRENTLY WORKING ON</h2>
-        <div class="spotify-widget">
-          <iframe data-testid="embed-iframe" style="border-radius:12px" src="https://open.spotify.com/embed/playlist/7kOy6t0IadB6L23oDP4JJO?utm_source=generator&theme=0" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        </div>
-      </div>
+      <hr class="home-divider">
+      <p class="home-divider-caption">
+        <span class="home-divider-caption-wrap" tabindex="0">
+          Behind the Scenes
+          <span class="home-divider-caption-tooltip" role="tooltip">Read about creating this website.</span>
+        </span>
+      </p>
+
     </main>
   </div>
 
@@ -128,6 +149,7 @@
     <a href="experiments.html" class="mobile-nav-item">Experiments</a>
   </nav>
   <script src="js/loader.js"></script>
+  <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -191,4 +191,107 @@ document.addEventListener('DOMContentLoaded', () => {
     issuesWrap.addEventListener('mouseleave', hideTooltip);
     issuesBtn.addEventListener('blur', hideTooltip);
   }
+
+  // Brisbane location: show current time (Brisbane) in tooltip on hover
+  const locationWrap = document.querySelector('.home-hero__location-wrap');
+  const brisbaneTimeTooltip = document.getElementById('brisbaneTimeTooltip');
+  if (locationWrap && brisbaneTimeTooltip) {
+    const formatBrisbaneTime = () => {
+      return new Date().toLocaleString('en-AU', {
+        timeZone: 'Australia/Brisbane',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+      });
+    };
+    let ticker = null;
+    const updateTooltip = () => {
+      brisbaneTimeTooltip.textContent = formatBrisbaneTime();
+    };
+    const startTicker = () => {
+      updateTooltip();
+      ticker = setInterval(updateTooltip, 1000);
+    };
+    const stopTicker = () => {
+      if (ticker) {
+        clearInterval(ticker);
+        ticker = null;
+      }
+    };
+    locationWrap.addEventListener('mouseenter', startTicker);
+    locationWrap.addEventListener('focusin', startTicker);
+    locationWrap.addEventListener('mouseleave', stopTicker);
+    locationWrap.addEventListener('focusout', stopTicker);
+  }
+
+  // Connect with me: load links from about_me table; email/phone are click-to-copy with tooltip
+  const linkLinkedIn = document.getElementById('home-link-linkedin');
+  const linkBehance = document.getElementById('home-link-behance');
+  const linkYouTube = document.getElementById('home-link-youtube');
+  const copyEmailBtn = document.getElementById('home-copy-email');
+  const copyPhoneBtn = document.getElementById('home-copy-phone');
+  const emailTooltip = document.getElementById('home-email-tooltip');
+  const phoneTooltip = document.getElementById('home-phone-tooltip');
+  const hasConnectRow = linkLinkedIn && linkBehance && linkYouTube && copyEmailBtn && copyPhoneBtn && emailTooltip && phoneTooltip;
+
+  function getText(row, keys) {
+    if (!row || typeof row !== 'object') return '';
+    for (let i = 0; i < keys.length; i++) {
+      const val = row[keys[i]];
+      if (val != null && String(val).trim() !== '') return String(val).trim();
+    }
+    return '';
+  }
+
+  function setupCopyButton(button, tooltipEl, value) {
+    if (!button || !tooltipEl || !value) return;
+    button.setAttribute('data-copy-value', value);
+    button.addEventListener('click', () => {
+      const v = button.getAttribute('data-copy-value');
+      if (!v) return;
+      navigator.clipboard.writeText(v).then(() => {
+        tooltipEl.textContent = 'Copied';
+        setTimeout(() => { tooltipEl.textContent = 'Click to copy'; }, 2000);
+      }).catch(() => {});
+    });
+  }
+
+  const reportIssueLinks = document.querySelectorAll('.report-issue-link');
+  const needsAboutMe = hasConnectRow || reportIssueLinks.length > 0;
+
+  if (needsAboutMe && window.SUPABASE_URL && window.SUPABASE_ANON_KEY) {
+    const table = window.SUPABASE_ABOUT_ME_TABLE || 'about_me';
+    const endpoint = window.SUPABASE_URL + '/rest/v1/' + encodeURIComponent(table) + '?select=*&limit=1';
+    fetch(endpoint, {
+      method: 'GET',
+      headers: {
+        apikey: window.SUPABASE_ANON_KEY,
+        Authorization: 'Bearer ' + window.SUPABASE_ANON_KEY,
+        'Content-Type': 'application/json',
+        Accept: 'application/json'
+      }
+    })
+      .then(res => res.ok ? res.json() : Promise.reject(new Error(res.status)))
+      .then(data => {
+        const row = Array.isArray(data) && data.length ? data[0] : data;
+        if (!row) return;
+        const linkedin = getText(row, ['linkedin_url', 'linkedin', 'LinkedIn']);
+        const behance = getText(row, ['behance_url', 'behance', 'Behance']);
+        const youtube = getText(row, ['youtube_url', 'youtube', 'YouTube']);
+        const email = getText(row, ['email', 'Email']);
+        const mobile = getText(row, ['mobile', 'phone', 'Phone', 'mobile_number']);
+        if (hasConnectRow) {
+          if (linkedin) linkLinkedIn.href = linkedin;
+          if (behance) linkBehance.href = behance;
+          if (youtube) linkYouTube.href = youtube;
+          setupCopyButton(copyEmailBtn, emailTooltip, email);
+          setupCopyButton(copyPhoneBtn, phoneTooltip, mobile);
+        }
+        if (email && reportIssueLinks.length) {
+          reportIssueLinks.forEach(el => { el.href = 'mailto:' + email; });
+        }
+      })
+      .catch(() => {});
+  }
 });

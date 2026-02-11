@@ -547,8 +547,7 @@ body.light-mode .navigation a:focus {
 .sidebar-footer a.date-link:hover,
 .sidebar-footer a.date-link:focus {
   opacity: 0.8;
-  outline: 0.125rem solid var(--color-link);
-  outline-offset: 0.125rem;
+  outline: none;
 }
 
 .sidebar-footer a:not(.date-link) {
@@ -558,6 +557,5 @@ body.light-mode .navigation a:focus {
 .sidebar-footer a:not(.date-link):hover,
 .sidebar-footer a:not(.date-link):focus {
   opacity: 0.8;
-  outline: 0.125rem solid var(--color-nav-link);
-  outline-offset: 0.125rem;
+  outline: none;
 }
