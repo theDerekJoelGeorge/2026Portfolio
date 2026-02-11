@@ -23,6 +23,7 @@
         <ul>
           <li><a href="index.html" data-initial="H"><span>Home</span></a></li>
           <li><a href="project.html" data-initial="C"><span>Case Studies</span></a></li>
+          <li><a href="resume.html" data-initial="R"><span>Resume</span></a></li>
           <li><a href="about-me.html" data-initial="A"><span>About Me</span></a></li>
           <li><a href="creative-garden.html" data-initial="C"><span>Creative Library</span></a></li>
           <li><a href="experiments.html" class="active" data-initial="E"><span>Experiments</span></a></li>
@@ -60,19 +61,32 @@
     <main class="content">
       <h1 class="page-title">Experiments</h1>
       <p class="page-intro">This is going to be a collection of my experiments and side projects. I'm currently working on a few projects, but I'm not sure if its ready to be shared yet.</p>
-      <p class="page-intro">In the meantime, enjoy this manifestation of Arsenal winning the Premier League in the eyes of multiple AI-powered video generation platforms.</p>
+      <p class="page-intro">In the meantime, enjoy this manifestation of Arsenal winning the Premier League from the eyes of multiple AI-powered video generation platforms.</p>
 
       <h2 class="experiments-subheading">MY PROMPT</h2>
       <p class="experiments-prompt">Arsenal wins the Premier League 2025-2026.</p>
 
       <div class="experiments-videos">
         <figure class="experiments-video-wrap">
-          <figcaption class="experiments-video-caption">Grok</figcaption>
+          <figcaption class="experiments-video-caption">
+            <span>Grok's Imagine</span>
+            <a href="https://grokimaginex.com/" target="_blank" rel="noopener noreferrer" class="experiments-video-link">Visit website</a>
+          </figcaption>
           <video class="experiments-video" src="images/grok.mp4" controls playsinline preload="auto" autoplay loop muted aria-label="Grok generated video"></video>
         </figure>
         <figure class="experiments-video-wrap">
-          <figcaption class="experiments-video-caption">Sora</figcaption>
+          <figcaption class="experiments-video-caption">
+            <span>OpenAI's Sora</span>
+            <a href="https://openai.com/sora" target="_blank" rel="noopener noreferrer" class="experiments-video-link">Visit website</a>
+          </figcaption>
           <video class="experiments-video" src="images/sora.mp4" controls playsinline preload="auto" autoplay loop muted aria-label="Sora generated video"></video>
+        </figure>
+        <figure class="experiments-video-wrap">
+          <figcaption class="experiments-video-caption">
+            <span>invideo.ai</span>
+            <a href="https://invideo.ai/" target="_blank" rel="noopener noreferrer" class="experiments-video-link">Visit website</a>
+          </figcaption>
+          <video class="experiments-video" src="images/invideo.mp4" controls playsinline preload="auto" autoplay loop muted aria-label="Invideo generated video"></video>
         </figure>
       </div>
 
@@ -96,10 +110,14 @@
   <nav class="mobile-nav">
     <a href="index.html" class="mobile-nav-item">Home</a>
     <a href="project.html" class="mobile-nav-item">Case Studies</a>
+    <a href="resume.html" class="mobile-nav-item">Resume</a>
     <a href="about-me.html" class="mobile-nav-item">About Me</a>
     <a href="creative-garden.html" class="mobile-nav-item">Creative Library</a>
     <a href="experiments.html" class="mobile-nav-item active">Experiments</a>
   </nav>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top" title="Back to top">↑</button>
+
   <script src="js/loader.js"></script>
   <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>

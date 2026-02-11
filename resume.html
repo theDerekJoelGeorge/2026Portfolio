@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="images/Logo-light.png" type="image/png">
+  <title>Resume – Derek's Portfolio</title>
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/loader.css">
+  <link rel="stylesheet" href="css/resume.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">
+        <img class="logo-dark" src="images/Logo-dark.png" alt="Logo" style="display: none;">
+        <img class="logo-light" src="images/Logo-light.png" alt="Logo" style="display: block;">
+      </div>
+      <nav class="navigation">
+        <ul>
+          <li><a href="index.html" data-initial="H"><span>Home</span></a></li>
+          <li><a href="project.html" data-initial="C"><span>Case Studies</span></a></li>
+          <li><a href="resume.html" class="active" data-initial="R"><span>Resume</span></a></li>
+          <li><a href="about-me.html" data-initial="A"><span>About Me</span></a></li>
+          <li><a href="creative-garden.html" data-initial="C"><span>Creative Library</span></a></li>
+          <li><a href="experiments.html" data-initial="E"><span>Experiments</span></a></li>
+        </ul>
+      </nav>
+      <footer class="sidebar-footer">
+        <p class="sidebar-footer__issues-wrap">
+          <button type="button" class="sidebar-footer__issues-btn" aria-label="Current issues on the website" aria-describedby="sidebar-issues-tooltip">
+            <span class="sidebar-footer__issues-icon" aria-hidden="true">!</span>
+          </button>
+          <div id="sidebar-issues-tooltip" class="sidebar-footer__issues-tooltip" role="tooltip">
+            <strong class="sidebar-footer__issues-tooltip-title">Current Issues on the Website</strong>
+            <ul>
+              <li>Website is still being optimized for tablets.</li>
+              <li>Experiments page is under development.</li>
+              <li>Hiring Teams do not view my application.</li>
+            </ul>
+          </div>
+        </p>
+        <div class="sidebar-footer__text-wrap">
+          <p>Last Updated<br><a href="#" class="date-link"></a></p>
+          <p><a href="#" class="report-issue-link">Report an Issue</a></p>
+          <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+            <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+            <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </footer>
+    </aside>
+    <main class="content">
+      <div class="resume-top">
+        <h1 class="page-title">Resume</h1>
+        <p class="page-intro">A summary of my experience, skills, and education.</p>
+        <a href="images/Derek Resume.pdf" class="resume-download-btn" download="Derek Resume.pdf"><i class="fas fa-download" aria-hidden="true"></i> Download resume</a>
+        <div class="resume-section-controls">
+          <p class="resume-section-hint">Click on each section below to expand it.</p>
+          <div class="resume-expand-collapse-wrap">
+            <button type="button" class="resume-expand-collapse-btn" id="resumeExpandAll">Expand all</button>
+            <button type="button" class="resume-expand-collapse-btn" id="resumeCollapseAll">Collapse all</button>
+          </div>
+        </div>
+      </div>
+
+      <details class="resume-section">
+        <summary class="resume-section__summary">Professional statement</summary>
+        <div class="resume-section__content">
+          <p class="resume-statement">I'm a Product Designer transitioning from a technical background of Electronics Engineering into human-centered design. I have 2 years of experience in Technological Consulting and through my design degree and project work, I've built strong foundations in UX research, interaction design, prototyping, and visual design. My experience working with cross-functional teams in industry and coursework enables me to translate complex ideas into clear user experiences and contribute effectively to product development.</p>
+        </div>
+      </details>
+
+      <details class="resume-section">
+        <summary class="resume-section__summary">Skills</summary>
+        <div class="resume-section__content">
+      <div class="resume-skills">
+        <div class="resume-skills-group">
+          <span class="resume-skills-group__title">UX &amp; Interaction Design</span>
+          <div class="resume-skills-group__items">
+            <span class="resume-skills-pill">User Research</span>
+            <span class="resume-skills-pill">Usability Testing</span>
+            <span class="resume-skills-pill">Wireframing</span>
+            <span class="resume-skills-pill">Prototyping</span>
+            <span class="resume-skills-pill">User Flows</span>
+          </div>
+        </div>
+        <div class="resume-skills-group">
+          <span class="resume-skills-group__title">UI Design</span>
+          <div class="resume-skills-group__items">
+            <span class="resume-skills-pill">Visual Design</span>
+            <span class="resume-skills-pill">Responsive Layouts</span>
+            <span class="resume-skills-pill">High-Fidelity Mockups</span>
+            <span class="resume-skills-pill">Design Systems</span>
+          </div>
+        </div>
+        <div class="resume-skills-group">
+          <span class="resume-skills-group__title">Tools</span>
+          <div class="resume-skills-group__items">
+            <span class="resume-skills-pill">Figma</span>
+            <span class="resume-skills-pill">Adobe XD</span>
+            <span class="resume-skills-pill">Illustrator</span>
+            <span class="resume-skills-pill">Photoshop</span>
+            <span class="resume-skills-pill">Miro</span>
+            <span class="resume-skills-pill">Unity</span>
+            <span class="resume-skills-pill">Adobe Creative Suite</span>
+            <span class="resume-skills-pill">Python</span>
+            <span class="resume-skills-pill">SQL</span>
+          </div>
+        </div>
+        <div class="resume-skills-group">
+          <span class="resume-skills-group__title">Front-End</span>
+          <div class="resume-skills-group__items">
+            <span class="resume-skills-pill">HTML</span>
+            <span class="resume-skills-pill">CSS</span>
+            <span class="resume-skills-pill">JavaScript</span>
+          </div>
+        </div>
+        <div class="resume-skills-group">
+          <span class="resume-skills-group__title">Accessibility</span>
+          <div class="resume-skills-group__items">
+            <span class="resume-skills-pill">WCAG 2.2</span>
+            <span class="resume-skills-pill">Inclusive Design Principles</span>
+          </div>
+        </div>
+      </div>
+        </div>
+      </details>
+
+      <details class="resume-section">
+        <summary class="resume-section__summary">Work experience</summary>
+        <div class="resume-section__content">
+      <div class="resume-work">
+        <article class="resume-work__entry">
+          <div class="resume-work__header">
+            <h3 class="resume-work__role">Casual Academic Tutor</h3>
+            <span class="resume-work__dates">July 2024 – November 2025</span>
+          </div>
+          <p class="resume-work__meta">University of Queensland | Brisbane, QLD</p>
+          <ul class="resume-work__list">
+            <li>Conducted weekly tutorials on web design fundamentals, covering HTML, CSS, responsive design principles, and introductory JavaScript programming</li>
+            <li>Guided postgraduate students through theoretical concepts and practical applications of web design, fostering a deep understanding of modern web development practices and tools</li>
+          </ul>
+        </article>
+        <article class="resume-work__entry">
+          <div class="resume-work__header">
+            <h3 class="resume-work__role">Senior Analyst</h3>
+            <span class="resume-work__dates">August 2021 – June 2023</span>
+          </div>
+          <p class="resume-work__meta">Capgemini India Private Ltd. | Bangalore, India</p>
+          <ul class="resume-work__list">
+            <li>Engaged with project managers to map user journeys and design system workflows, ensuring that backend API integrations supported clear, intuitive product experiences.</li>
+            <li>Developed a Proof of Concept (POC) website, incorporating the Stripe payments platform to support its expansion into the Indian market, ensuring compliance with local payment regulations and optimizing transaction workflows.</li>
+          </ul>
+        </article>
+      </div>
+        </div>
+      </details>
+
+      <details class="resume-section">
+        <summary class="resume-section__summary">Education</summary>
+        <div class="resume-section__content">
+      <div class="resume-work">
+        <article class="resume-work__entry">
+          <div class="resume-work__header">
+            <h3 class="resume-work__role">Master of Interaction Design</h3>
+            <span class="resume-work__dates">July 2023 – July 2025</span>
+          </div>
+          <p class="resume-work__meta">University of Queensland | Brisbane, QLD | GPA: 6.375</p>
+          <ul class="resume-work__list">
+            <li>Dean's Commendation for Academic Excellence recipient</li>
+            <li>Employability Award recipient</li>
+          </ul>
+        </article>
+        <article class="resume-work__entry">
+          <div class="resume-work__header">
+            <h3 class="resume-work__role">Bachelor of Technology in Electronics and Communication Engineering</h3>
+            <span class="resume-work__dates">August 2017 – May 2021</span>
+          </div>
+          <p class="resume-work__meta">National Institute of Technology Karnataka | Surathkal, India | GPA: 6.54</p>
+        </article>
+      </div>
+        </div>
+      </details>
+
+      <details class="resume-section">
+        <summary class="resume-section__summary">Leadership</summary>
+        <div class="resume-section__content">
+      <div class="resume-work">
+        <article class="resume-work__entry">
+          <div class="resume-work__header">
+            <h3 class="resume-work__role">Secretary and Vice President (Community Development)</h3>
+          </div>
+          <p class="resume-work__meta">Association of Postgraduate Students Inc. | University of Queensland</p>
+        </article>
+        <article class="resume-work__entry">
+          <div class="resume-work__header">
+            <h3 class="resume-work__role">Postgraduate Representative</h3>
+          </div>
+          <p class="resume-work__meta">Digital Learning Sub Committee | University of Queensland</p>
+        </article>
+        <article class="resume-work__entry">
+          <div class="resume-work__header">
+            <h3 class="resume-work__role">Vice President</h3>
+          </div>
+          <p class="resume-work__meta">Rotaract Club NITK Chapter | National Institute of Technology Karnataka</p>
+        </article>
+      </div>
+        </div>
+      </details>
+
+      <details class="resume-section">
+        <summary class="resume-section__summary">References</summary>
+        <div class="resume-section__content">
+      <div class="resume-work">
+        <p class="resume-references-note">Can be provided upon request</p>
+      </div>
+        </div>
+      </details>
+    </main>
+  </div>
+  <header class="mobile-header">
+    <div class="mobile-logo">
+      <img class="logo-dark" src="images/Logo-dark.png" alt="Logo" style="display: none;">
+      <img class="logo-light" src="images/Logo-light.png" alt="Logo" style="display: block;">
+    </div>
+    <button class="mobile-theme-toggle" id="mobileThemeToggle" aria-label="Toggle theme">
+      <svg class="sun-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <svg class="moon-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display: none;">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </header>
+  <nav class="mobile-nav">
+    <a href="index.html" class="mobile-nav-item">Home</a>
+    <a href="project.html" class="mobile-nav-item">Case Studies</a>
+    <a href="resume.html" class="mobile-nav-item active">Resume</a>
+    <a href="about-me.html" class="mobile-nav-item">About Me</a>
+    <a href="creative-garden.html" class="mobile-nav-item">Creative Library</a>
+    <a href="experiments.html" class="mobile-nav-item">Experiments</a>
+  </nav>
+  <script src="js/loader.js"></script>
+  <script src="js/supabase-config.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var sections = document.querySelectorAll('.resume-section');
+      var mobile = window.matchMedia('(max-width: 48rem)');
+      function onToggle(e) {
+        var details = e.target;
+        if (!mobile.matches) return;
+        if (details.open) {
+          details.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }
+      sections.forEach(function(el) {
+        el.addEventListener('toggle', onToggle);
+      });
+      var expandBtn = document.getElementById('resumeExpandAll');
+      var collapseBtn = document.getElementById('resumeCollapseAll');
+      if (expandBtn) {
+        expandBtn.addEventListener('click', function() {
+          sections.forEach(function(d) { d.open = true; });
+        });
+      }
+      if (collapseBtn) {
+        collapseBtn.addEventListener('click', function() {
+          sections.forEach(function(d) { d.open = false; });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

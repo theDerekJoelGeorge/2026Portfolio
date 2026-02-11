@@ -294,4 +294,18 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       .catch(() => {});
   }
+
+  // Back to top: show after scroll, scroll to top on click
+  const backToTop = document.getElementById('backToTop');
+  if (backToTop) {
+    function toggleBackToTop() {
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      backToTop.classList.toggle('is-visible', y > 400);
+    }
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    toggleBackToTop();
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
 });
