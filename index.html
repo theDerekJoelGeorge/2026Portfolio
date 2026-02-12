@@ -15,6 +15,7 @@
 <body>
   <div class="container">
     <aside class="sidebar">
+      <div class="sidebar-bg" id="sidebarBg"></div>
       <div class="logo">
         <img class="logo-dark" src="images/Logo-dark.png" alt="Logo" style="display: none;">
         <img class="logo-light" src="images/Logo-light.png" alt="Logo" style="display: block;">
@@ -61,7 +62,7 @@
     </aside>
     <main class="content">
       <section class="home-hero" aria-label="Intro">
-        <img class="home-hero__avatar" src="images/Derek_Joel_George.jpg" alt="Derek Joel George">
+        <img class="home-hero__avatar" src="images/Derek_Joel_George.png" alt="Derek Joel George">
 
         <div class="home-hero__right">
           <div class="home-hero__meta">
@@ -83,11 +84,7 @@
       </p>
 
       <p class="home-intro">
-        Now I'm on the hunt to find my first UX/Product Designer role. Having built a solid foundation in design through my studies, I want to translate that learning into practice. I'll grow through hands-on real-world projects as well as learn from experienced designers and improve through practice and feedback.
-      </p>
-
-      <p class="home-intro">
-        Outside of work, you’ll see me spending time on my PS5, creating a new playlist on Spotify or watching the Premier League. COYG !
+        Now I'm on the hunt to find my first UX/Product Designer role. Having built a solid foundation in design through my studies, I want to translate that learning into practice and grow through hands-on real-world projects as well as learn from experienced designers and improve through practice and feedback.
       </p>
 
       <h2 class="home-subheading">CONNECT WITH ME</h2>
@@ -120,11 +117,81 @@
       <p class="home-divider-caption">
         <span class="home-divider-caption-wrap" tabindex="0">
           Behind the Scenes
-          <span class="home-divider-caption-tooltip" role="tooltip">Read about creating this website.</span>
+          <span class="home-divider-caption-tooltip" role="tooltip">I'm still documenting my process of developing this website.</span>
+        </span>
+        <span class="home-divider-separator">|</span>
+        <span class="curious-btn-wrap">
+          <button type="button" class="break-website-btn" id="breakWebsiteBtn">Do not Click</button>
+          <span class="curious-btn-tooltip">what if this click breaks the website ?</span>
         </span>
       </p>
 
     </main>
+    
+  </div>
+
+  <!-- Break Website Overlay Screens -->
+  <div class="break-overlay" id="breakOverlay">
+    <!-- Screen 1: Congratulations -->
+    <div class="break-screen break-screen--1" id="breakScreen1">
+      <h2 class="break-screen__title">Congratulations! You've successfully broken the website.</h2>
+      <p class="break-screen__subtitle">was that even worth it ?</p>
+      <div class="break-screen__buttons">
+        <button type="button" class="break-screen__btn" id="breakYesBtn">yes</button>
+        <button type="button" class="break-screen__btn" id="breakNoBtn">no</button>
+      </div>
+    </div>
+
+    <!-- Screen 2: Curiosity killed the cat -->
+    <div class="break-screen break-screen--2" id="breakScreen2">
+      <h2 class="break-screen__title"><span id="userChoice">no</span>? well, looks like curiosity killed the cat :/</h2>
+      <p class="break-screen__subtitle">you've got 2 choices now to fix the website</p>
+      <div class="break-screen__buttons">
+        <span class="break-btn-wrap">
+          <button type="button" class="break-screen__btn" id="breakEasyBtn">the easy way</button>
+          <span class="break-btn-tooltip">well, you're boring</span>
+        </span>
+        <span class="break-btn-wrap">
+          <button type="button" class="break-screen__btn" id="breakHardBtn">the hard way</button>
+          <span class="break-btn-tooltip">are you sure?</span>
+        </span>
+      </div>
+      <p class="break-screen__hint" id="breakHint" style="display: none;">click on your choice again to proceed.</p>
+      <p class="break-screen__hint" id="breakTaunt" style="display: none;">come on now, we all know that there is no easy way out here</p>
+      <p class="break-screen__footnote">you must be fun at parties if you are thinking of refreshing the page.</p>
+    </div>
+
+    <!-- Screen 3: Pong Game -->
+    <div class="break-screen break-screen--3" id="breakScreen3">
+      <h2 class="break-screen__title">there is no easy way out of this</h2>
+      <p class="break-screen__subtitle">win this game of pong to rebuild the website</p>
+      
+      <!-- Game container (same size as canvas) -->
+      <div class="pong-container">
+        <!-- Instructions (shown before game starts) -->
+        <div class="pong-instructions" id="pongInstructions" role="region" aria-label="Game instructions">
+          <h3 class="pong-instructions__title">HOW TO PLAY</h3>
+          <p class="pong-instructions__text">Use your mouse or touch to move the <span class="pong-instructions__paddle">green paddle</span></p>
+          <p class="pong-instructions__text">First to 3 points wins</p>
+          <button type="button" class="pong-start-btn" id="pongStartBtn">Start</button>
+        </div>
+        
+        <!-- Canvas (hidden until game starts) -->
+        <canvas id="pongCanvas" class="pong-canvas" width="300" height="400" 
+          role="img" 
+          aria-label="Pong game. Move your mouse or touch to control the green paddle at the bottom."
+          tabindex="0"></canvas>
+        
+        <!-- Game End Overlay (shown after game ends) -->
+        <div class="pong-game-end" id="pongGameEnd" style="display: none;">
+          <div class="confetti-container" id="confettiContainer"></div>
+          <h3 class="pong-game-end__title" id="gameEndTitle">Congratulations!</h3>
+          <p class="pong-game-end__subtitle" id="gameEndSubtitle">You beat the AI</p>
+          <button type="button" class="pong-game-end__btn" id="gameEndBtn">Rebuild Website</button>
+        </div>
+      </div>
+      <p class="break-screen__footnote">you must be fun at parties if you are thinking of refreshing the page.</p>
+    </div>
   </div>
 
   <header class="mobile-header">
@@ -155,5 +222,6 @@
   <script src="js/loader.js"></script>
   <script src="js/supabase-config.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/break-website.js"></script>
 </body>
 </html>

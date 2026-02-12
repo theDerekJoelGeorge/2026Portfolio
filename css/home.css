@@ -9,9 +9,8 @@
 }
 
 .home-hero__avatar {
-  width: 3.25rem;
-  height: 3.25rem;
-  background: #d9d9d9;
+  width: 5rem;
+  height: 5rem;
   border-radius: 0.125rem;
   flex: 0 0 auto;
   object-fit: cover;
@@ -60,12 +59,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.625rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.875rem;
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.08);
-  border: 0.0625rem solid rgba(255, 255, 255, 0.35);
-  border-radius: 0.25rem;
   white-space: nowrap;
 }
 
@@ -96,24 +92,23 @@
 
 .home-hero__location i {
   color: #e53935;
-  font-size: 0.625rem;
+  font-size: 0.875rem;
 }
 
 @media (max-width: 48rem) {
   .home-hero__avatar {
-    width: 4.5rem;
-    height: 4.5rem;
+    width: 6.5rem;
+    height: 6.5rem;
     border-radius: 0.5rem;
   }
 
   .home-hero__location {
-    border-radius: 9999px;
-    padding: 0.3rem 0.65rem;
-    font-size: 0.65rem;
+    padding: 0.4rem 0.75rem;
+    font-size: 0.9rem;
   }
 
   .home-hero__location i {
-    font-size: 0.65rem;
+    font-size: 0.9rem;
   }
 }
 
@@ -145,6 +140,7 @@
 .home-divider-caption-wrap {
   position: relative;
   display: inline-block;
+  cursor: not-allowed;
 }
 
 .home-divider-caption-tooltip {
@@ -282,8 +278,8 @@
   }
 
   .home-hero__avatar {
-    width: 4rem;
-    height: 4rem;
+    width: 6rem;
+    height: 6rem;
   }
 
   .home-hero__meta {
@@ -321,10 +317,500 @@ body.light-mode .social-copy-btn i {
 
 body.light-mode .home-hero__location {
   color: #1a1a1a;
-  background: rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, 0.2);
 }
 
 body.light-mode .social-copy-btn:hover i {
   color: #1a1a1a;
+}
+
+/* Divider separator */
+.home-divider-separator {
+  margin: 0 0.5rem;
+  color: #8b8b8b;
+}
+
+/* Break Website Button */
+.break-website-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  color: #8b8b8b;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.break-website-btn:hover {
+  color: #ffffff;
+}
+
+body.light-mode .home-divider-separator {
+  color: #666666;
+}
+
+body.light-mode .break-website-btn {
+  color: #666666;
+}
+
+body.light-mode .break-website-btn:hover {
+  color: #1a1a1a;
+}
+
+/* Curious Button Tooltip */
+.curious-btn-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.curious-btn-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.35rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.6875rem;
+  color: var(--color-heading);
+  background-color: var(--accent-tooltip);
+  border-radius: 0.375rem;
+  white-space: nowrap;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+}
+
+.curious-btn-wrap:hover .curious-btn-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Break Website Overlay */
+.break-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--bg-content);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+body.light-mode .break-overlay {
+  background: #ffffff;
+}
+
+/* Hide scrollbar when site is broken */
+html.site-broken {
+  overflow: hidden !important;
+}
+
+html.site-broken body {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+html.site-broken .container {
+  overflow: clip !important;
+  max-height: 100vh !important;
+}
+
+html.site-broken .content {
+  overflow: clip !important;
+}
+
+.break-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.break-screen {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  max-width: 600px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+}
+
+.break-screen.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.break-screen__title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  line-height: 1.4;
+}
+
+body.light-mode .break-screen__title {
+  color: #1a1a1a;
+}
+
+.break-screen__subtitle {
+  color: #a3a3a3;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+body.light-mode .break-screen__subtitle {
+  color: #525252;
+}
+
+.break-screen__buttons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.break-btn-wrap {
+  position: relative;
+  display: inline-block;
+}
+
+.break-btn-tooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-bottom: 0.35rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.6875rem;
+  color: var(--color-heading);
+  background-color: var(--accent-tooltip);
+  border-radius: 0.375rem;
+  white-space: nowrap;
+  pointer-events: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+  z-index: 100;
+}
+
+.break-btn-wrap:hover .break-btn-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+.break-screen__btn {
+  padding: 0.6rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #ffffff;
+  background: #2a2a2a;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.break-screen__btn:hover {
+  background: #3a3a3a;
+}
+
+.break-screen__hint {
+  color: #a3a3a3;
+  font-size: 0.875rem;
+  margin-top: 1rem;
+}
+
+body.light-mode .break-screen__hint {
+  color: #525252;
+}
+
+#breakTaunt {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  margin-top: 1.5rem;
+}
+
+body.light-mode #breakTaunt {
+  background: rgba(0, 0, 0, 0.06);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.break-screen__footnote {
+  color: #9a9a9a;
+  font-size: 0.8125rem;
+  margin-top: 3rem;
+}
+
+body.light-mode .break-screen__footnote {
+  color: #525252;
+}
+
+/* Pong Container */
+.pong-container {
+  width: 300px;
+  height: 400px;
+  position: relative;
+  margin-top: 1rem;
+  background: #ffffff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Pong Instructions */
+.pong-instructions {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 2rem;
+  background: #f5f5f5;
+}
+
+.pong-instructions__title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 0.05em;
+}
+
+.pong-instructions__text {
+  color: #444;
+  font-size: 0.875rem;
+  margin: 0;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.pong-instructions__paddle {
+  color: #2d5a1e;
+  font-weight: 600;
+}
+
+.pong-start-btn {
+  background: #2d5a1e;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.75rem 2rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  margin-top: 1rem;
+  min-height: 44px;
+  transition: background 0.2s ease;
+}
+
+.pong-start-btn:hover {
+  background: #3d7a2e;
+}
+
+.pong-start-btn:focus {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+/* Pong Canvas */
+.pong-canvas {
+  background: #d9d9d9;
+  border-radius: 0.25rem;
+  display: none;
+}
+
+.pong-canvas.active {
+  display: block;
+}
+
+.pong-canvas:focus {
+  outline: 3px solid #2d5a1e;
+  outline-offset: 2px;
+}
+
+/* Pong Game End Overlay */
+.pong-game-end {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 0.5rem;
+  z-index: 10;
+}
+
+.pong-game-end__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.pong-game-end__subtitle {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0 0 1rem 0;
+}
+
+.pong-game-end__btn {
+  background: #2d5a1e;
+  color: #ffffff;
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  min-height: 44px;
+}
+
+.pong-game-end__btn:hover {
+  background: #3d7a2e;
+}
+
+.pong-game-end__btn--retry {
+  background: #c0392b;
+}
+
+.pong-game-end__btn--retry:hover {
+  background: #e74c3c;
+}
+
+.pong-game-end__btn:focus {
+  outline: 2px solid #1a1a1a;
+  outline-offset: 2px;
+}
+
+/* Confetti Animation */
+.confetti-container {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  height: 100px;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.confetti {
+  position: absolute;
+  opacity: 0;
+  transform-origin: center;
+}
+
+@keyframes confetti-burst {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(0) rotate(0deg);
+  }
+  30% {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--x)), var(--y)) scale(1) rotate(180deg);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--x) * 0.8), calc(var(--y) + 120px)) scale(0.6) rotate(540deg);
+  }
+}
+
+/* Sidebar background element for break effect */
+.sidebar-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-sidebar);
+  z-index: -1;
+  pointer-events: none;
+}
+
+body.light-mode .sidebar-bg {
+  background-color: var(--bg-sidebar-light);
+}
+
+/* When site is broken, make sidebar transparent so bg element falling is visible */
+.sidebar.site-broken {
+  background-color: transparent !important;
+}
+
+/* Gravity falling animation */
+.gravity-fall {
+  transition: none !important;
+  animation: gravityFall 2s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+.gravity-fall:not(.sidebar-bg) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Sidebar background needs different animation */
+.sidebar-bg.gravity-fall {
+  animation: gravityFallBg 2s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+@keyframes gravityFall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh + 200px)) rotate(var(--fall-rotation, 15deg));
+    opacity: 0;
+  }
+}
+
+@keyframes gravityFallBg {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(150vh);
+    opacity: 0;
+  }
+}
+
+/* Reset animation for fixing */
+.gravity-reset {
+  animation: gravityReset 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes gravityReset {
+  0% {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
 }
