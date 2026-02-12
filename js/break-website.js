@@ -173,9 +173,9 @@
     let playerScore = 0;
     let aiScore = 0;
     const winScore = 3;
-    let gameStarted = false;
     let countdownValue = 3;
     let ballPaused = false;
+    let ballHasBeenHit = false;
     
     // Flash feedback state
     let flashColor = null;
@@ -226,6 +226,32 @@
     pongCanvas.addEventListener('touchmove', handleTouchMove, { passive: true });
     pongCanvas.addEventListener('touchstart', handleTouchStart, { passive: true });
     
+    // Keyboard controls for accessibility (arrow keys only)
+    let keysPressed = { left: false, right: false };
+    
+    const handleKeyDown = (e) => {
+      if (e.key === 'ArrowLeft') {
+        keysPressed.left = true;
+        e.preventDefault();
+      }
+      if (e.key === 'ArrowRight') {
+        keysPressed.right = true;
+        e.preventDefault();
+      }
+    };
+    
+    const handleKeyUp = (e) => {
+      if (e.key === 'ArrowLeft') {
+        keysPressed.left = false;
+      }
+      if (e.key === 'ArrowRight') {
+        keysPressed.right = false;
+      }
+    };
+    
+    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener('keyup', handleKeyUp);
+    
     // Flash the board with a color
     const flashBoard = (color) => {
       flashColor = color;
@@ -238,6 +264,7 @@
       ballY = H / 2;
       ballSpeedX = 0;
       ballSpeedY = 0;
+      ballHasBeenHit = false; // Reset hit state for new serve
       
       if (withCountdown) {
         ballPaused = true;
@@ -248,7 +275,7 @@
           if (countdownValue <= 0) {
             clearInterval(countdownInterval);
             ballPaused = false;
-            // Start ball movement (slower speed)
+            // Ball starts slow on every serve
             ballSpeedX = 2 * (Math.random() > 0.5 ? 1 : -1);
             ballSpeedY = 2 * (playerScore > aiScore ? 1 : -1);
           }
@@ -260,8 +287,14 @@
     let animationId;
     
     const update = () => {
-      // Update player paddle (follows mouse/touch)
-      playerX = mouseX - paddleW / 2;
+      // Update player paddle (keyboard takes priority, then mouse/touch)
+      if (keysPressed.left) {
+        playerX -= paddleSpeed;
+      } else if (keysPressed.right) {
+        playerX += paddleSpeed;
+      } else {
+        playerX = mouseX - paddleW / 2;
+      }
       playerX = Math.max(0, Math.min(W - paddleW, playerX));
       
       // Don't update ball or AI if paused
@@ -292,7 +325,13 @@
       if (ballY + ballRadius > H - paddleH - 10 && 
           ballX > playerX && ballX < playerX + paddleW &&
           ballSpeedY > 0) {
-        ballSpeedY = -ballSpeedY;
+        // Speed up ball on first hit after serve
+        if (!ballHasBeenHit) {
+          ballHasBeenHit = true;
+          ballSpeedY = -3; // Faster speed after hit
+        } else {
+          ballSpeedY = -ballSpeedY;
+        }
         // Add angle based on where ball hits paddle
         const hitPos = (ballX - playerX) / paddleW;
         ballSpeedX = (hitPos - 0.5) * 6;
@@ -302,7 +341,13 @@
       if (ballY - ballRadius < paddleH + 10 && 
           ballX > aiX && ballX < aiX + paddleW &&
           ballSpeedY < 0) {
-        ballSpeedY = -ballSpeedY;
+        // Speed up ball on first hit after serve
+        if (!ballHasBeenHit) {
+          ballHasBeenHit = true;
+          ballSpeedY = 3; // Faster speed after hit
+        } else {
+          ballSpeedY = -ballSpeedY;
+        }
         const hitPos = (ballX - aiX) / paddleW;
         ballSpeedX = (hitPos - 0.5) * 6;
       }
@@ -442,6 +487,8 @@
       document.removeEventListener('mousemove', handleMouseMove);
       pongCanvas.removeEventListener('touchmove', handleTouchMove);
       pongCanvas.removeEventListener('touchstart', handleTouchStart);
+      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keyup', handleKeyUp);
     };
     
     pongGame = { stop: stopPongGame };

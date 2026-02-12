@@ -386,6 +386,14 @@ body.light-mode .break-website-btn:hover {
   opacity: 1;
 }
 
+/* Hide tooltips on mobile */
+@media (max-width: 768px) {
+  .curious-btn-tooltip,
+  .break-btn-tooltip {
+    display: none;
+  }
+}
+
 /* Break Website Overlay */
 .break-overlay {
   position: fixed;
