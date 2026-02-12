@@ -196,27 +196,33 @@
     let ballSpeedY = 0;
     
     // Input handling
-    let mouseX = playerX + paddleW / 2;
+    let usingKeyboard = false;
     
     // Mouse tracking on entire document (works even outside canvas)
     const handleMouseMove = (e) => {
+      usingKeyboard = false; // Switch back to mouse when mouse moves
       const rect = pongCanvas.getBoundingClientRect();
-      mouseX = e.clientX - rect.left;
-      // Clamp to canvas bounds
-      mouseX = Math.max(paddleW / 2, Math.min(W - paddleW / 2, mouseX));
+      const newMouseX = e.clientX - rect.left;
+      // Update paddle position directly for mouse
+      playerX = newMouseX - paddleW / 2;
+      playerX = Math.max(0, Math.min(W - paddleW, playerX));
     };
     
     // Touch handling for mobile
     const handleTouchMove = (e) => {
+      usingKeyboard = false;
       const rect = pongCanvas.getBoundingClientRect();
-      mouseX = e.touches[0].clientX - rect.left;
-      mouseX = Math.max(paddleW / 2, Math.min(W - paddleW / 2, mouseX));
+      const touchX = e.touches[0].clientX - rect.left;
+      playerX = touchX - paddleW / 2;
+      playerX = Math.max(0, Math.min(W - paddleW, playerX));
     };
     
     const handleTouchStart = (e) => {
+      usingKeyboard = false;
       const rect = pongCanvas.getBoundingClientRect();
-      mouseX = e.touches[0].clientX - rect.left;
-      mouseX = Math.max(paddleW / 2, Math.min(W - paddleW / 2, mouseX));
+      const touchX = e.touches[0].clientX - rect.left;
+      playerX = touchX - paddleW / 2;
+      playerX = Math.max(0, Math.min(W - paddleW, playerX));
     };
     
     // Track mouse on entire document for desktop
@@ -232,10 +238,12 @@
     const handleKeyDown = (e) => {
       if (e.key === 'ArrowLeft') {
         keysPressed.left = true;
+        usingKeyboard = true;
         e.preventDefault();
       }
       if (e.key === 'ArrowRight') {
         keysPressed.right = true;
+        usingKeyboard = true;
         e.preventDefault();
       }
     };
@@ -287,15 +295,16 @@
     let animationId;
     
     const update = () => {
-      // Update player paddle (keyboard takes priority, then mouse/touch)
-      if (keysPressed.left) {
-        playerX -= paddleSpeed;
-      } else if (keysPressed.right) {
-        playerX += paddleSpeed;
-      } else {
-        playerX = mouseX - paddleW / 2;
+      // Update player paddle with keyboard (mouse/touch handled in their event handlers)
+      if (usingKeyboard) {
+        if (keysPressed.left) {
+          playerX -= paddleSpeed;
+        }
+        if (keysPressed.right) {
+          playerX += paddleSpeed;
+        }
+        playerX = Math.max(0, Math.min(W - paddleW, playerX));
       }
-      playerX = Math.max(0, Math.min(W - paddleW, playerX));
       
       // Don't update ball or AI if paused
       if (ballPaused) return;
