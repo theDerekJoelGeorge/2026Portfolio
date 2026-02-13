@@ -301,11 +301,14 @@ body.light-mode .sidebar-footer__issues-tooltip-title {
   box-shadow: 0 0.125rem 0.5rem var(--shadow-mobile-nav), inset 0 0.0625rem 0 var(--shadow-mobile-nav-inset);
 }
 
-.mobile-nav-item:hover,
-.mobile-nav-item:focus {
+.mobile-nav-item:hover {
   color: var(--color-heading);
-  outline: 0.125rem solid var(--color-heading);
-  outline-offset: 0.125rem;
+}
+
+.mobile-nav-item:focus,
+.mobile-nav-item:focus-visible {
+  color: var(--color-heading);
+  outline: none;
 }
 
 
@@ -342,10 +345,14 @@ body.light-mode .mobile-nav-item.active {
   box-shadow: 0 0.125rem 0.5rem var(--shadow-mobile-nav-light), inset 0 0.0625rem 0 var(--shadow-mobile-nav-inset);
 }
 
-body.light-mode .mobile-nav-item:hover,
-body.light-mode .mobile-nav-item:focus {
+body.light-mode .mobile-nav-item:hover {
   color: var(--color-heading-light);
-  outline-color: var(--color-heading-light);
+}
+
+body.light-mode .mobile-nav-item:focus,
+body.light-mode .mobile-nav-item:focus-visible {
+  color: var(--color-heading-light);
+  outline: none;
 }
 
 body.light-mode .navigation a:hover,

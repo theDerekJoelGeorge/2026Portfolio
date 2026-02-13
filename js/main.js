@@ -160,16 +160,20 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Mobile only: center the active page in the pill menu
+  // Mobile only: center the active page in the pill menu (after layout so "Experiments" etc. aren't clipped)
   const mobileNav = document.querySelector('.mobile-nav');
   const activeNavItem = document.querySelector('.mobile-nav-item.active');
   if (mobileNav && activeNavItem && window.matchMedia('(max-width: 48rem)').matches) {
     const centerActive = () => {
       activeNavItem.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'instant' });
     };
-    centerActive();
+    requestAnimationFrame(() => {
+      requestAnimationFrame(centerActive);
+    });
     window.addEventListener('resize', () => {
-      if (window.matchMedia('(max-width: 48rem)').matches) centerActive();
+      if (window.matchMedia('(max-width: 48rem)').matches) {
+        requestAnimationFrame(centerActive);
+      }
     });
   }
 
