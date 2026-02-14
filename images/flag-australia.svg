@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 16" width="32" height="16" aria-hidden="true">
+  <rect width="32" height="16" fill="#00008B"/>
+  <!-- Canton: dark blue -->
+  <rect width="14" height="7" fill="#012169"/>
+  <!-- St George cross (white) -->
+  <rect x="5.25" y="0" width="3.5" height="7" fill="#fff"/>
+  <rect x="0" y="2.33" width="14" height="2.34" fill="#fff"/>
+  <!-- St Patrick saltire (red) -->
+  <path fill="#C8102E" d="M0 0l14 7h-4.67L0 2.33V0zm14 0L0 7v-2.33L9.33 0H14zM0 7l14-7v2.33L2.33 7H0zm14-7L0 4.67V7h4.67L14 2.33V0z"/>
+  <!-- Commonwealth star -->
+  <polygon points="7,9 7.4,10 8.2,10.2 7.6,10.8 7.7,11.6 7,11.2 6.3,11.6 6.4,10.8 5.8,10.2 6.6,10" fill="#fff"/>
+  <!-- Southern Cross -->
+  <polygon points="17.5,4 18,4.7 18.8,4.9 18.2,5.4 18.4,6.2 17.5,5.8 16.6,6.2 16.8,5.4 16.2,4.9 17,4.7" fill="#fff"/>
+  <polygon points="21.5,3.5 21.9,4.1 22.6,4.3 22.1,4.8 22.3,5.4 21.5,5.1 20.7,5.4 20.9,4.8 20.4,4.3 21.1,4.1" fill="#fff"/>
+  <polygon points="21.5,6.5 21.9,7.1 22.6,7.3 22.1,7.8 22.3,8.4 21.5,8.1 20.7,8.4 20.9,7.8 20.4,7.3 21.1,7.1" fill="#fff"/>
+  <polygon points="24.5,5 24.85,5.45 25.4,5.6 25.05,6 25.15,6.5 24.5,6.25 23.85,6.5 23.95,6 23.6,5.6 24.15,5.45" fill="#fff"/>
+</svg>

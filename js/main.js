@@ -196,37 +196,135 @@ document.addEventListener('DOMContentLoaded', () => {
     issuesBtn.addEventListener('blur', hideTooltip);
   }
 
-  // Brisbane location: show current time (Brisbane) in tooltip on hover
-  const locationWrap = document.querySelector('.home-hero__location-wrap');
-  const brisbaneTimeTooltip = document.getElementById('brisbaneTimeTooltip');
-  if (locationWrap && brisbaneTimeTooltip) {
+  // Brisbane time below divider (left of Behind the Scenes | Do not Click)
+  const homeDividerTime = document.getElementById('home-divider-time');
+  if (homeDividerTime) {
     const formatBrisbaneTime = () => {
-      return new Date().toLocaleString('en-AU', {
+      const d = new Date();
+      const timeStr = d.toLocaleString('en-AU', {
         timeZone: 'Australia/Brisbane',
         hour: 'numeric',
         minute: '2-digit',
         second: '2-digit',
         hour12: true
       });
+      const tzParts = new Intl.DateTimeFormat('en-AU', {
+        timeZone: 'Australia/Brisbane',
+        timeZoneName: 'short'
+      }).formatToParts(d);
+      const tzAbbr = tzParts.find(p => p.type === 'timeZoneName')?.value || 'AEST';
+      return timeStr + ' ' + tzAbbr;
     };
-    let ticker = null;
-    const updateTooltip = () => {
-      brisbaneTimeTooltip.textContent = formatBrisbaneTime();
+    const updateDividerTime = () => {
+      homeDividerTime.textContent = formatBrisbaneTime();
     };
-    const startTicker = () => {
-      updateTooltip();
-      ticker = setInterval(updateTooltip, 1000);
+    updateDividerTime();
+    setInterval(updateDividerTime, 1000);
+  }
+
+  // Hero role cycling: Product Designer → Interaction Designer → … (slow fade, one by one)
+  const heroRoleEl = document.getElementById('hero-role');
+  if (heroRoleEl) {
+    const roles = [
+      'Product Designer',
+      'Interaction Designer',
+      'UX Designer',
+      'UI Designer',
+      'Graphic Designer',
+      'Creative',
+      'Arsenal fan'
+    ];
+    let roleIndex = 0;
+    const cycleRole = () => {
+      heroRoleEl.style.opacity = '0';
+      const onFadeOut = () => {
+        heroRoleEl.removeEventListener('transitionend', onFadeOut);
+        heroRoleEl.textContent = roles[roleIndex];
+        roleIndex = (roleIndex + 1) % roles.length;
+        heroRoleEl.offsetHeight; // force reflow so opacity transition runs
+        heroRoleEl.style.opacity = '1';
+      };
+      heroRoleEl.addEventListener('transitionend', onFadeOut);
     };
-    const stopTicker = () => {
-      if (ticker) {
-        clearInterval(ticker);
-        ticker = null;
-      }
+    setInterval(cycleRole, 2800);
+  }
+
+  // Name eyes: pupils follow the cursor, constrained inside the oval (ellipse)
+  const nameEyes = document.querySelectorAll('.name-eye');
+  if (nameEyes.length) {
+    // Match oval size in CSS: width 0.62em, height 0.72em; pupil 0.2em
+    const ovalHalfW = 0.62 / 2 - 0.1;  // em, leave room for pupil radius
+    const ovalHalfH = 0.72 / 2 - 0.1;
+    const updatePupils = (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      nameEyes.forEach((eye) => {
+        const rect = eye.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+        const fontSize = parseFloat(getComputedStyle(eye).fontSize);
+        const maxDx = fontSize * ovalHalfW;
+        const maxDy = fontSize * ovalHalfH;
+        let dx = x - centerX;
+        let dy = y - centerY;
+        const q = (dx / maxDx) ** 2 + (dy / maxDy) ** 2;
+        if (q > 1 && q > 0) {
+          const s = 1 / Math.sqrt(q);
+          dx *= s;
+          dy *= s;
+        }
+        eye.style.setProperty('--pupil-x', dx + 'px');
+        eye.style.setProperty('--pupil-y', dy + 'px');
+      });
     };
-    locationWrap.addEventListener('mouseenter', startTicker);
-    locationWrap.addEventListener('focusin', startTicker);
-    locationWrap.addEventListener('mouseleave', stopTicker);
-    locationWrap.addEventListener('focusout', stopTicker);
+    document.addEventListener('mousemove', updatePupils);
+  }
+
+  // Eye click: red flash (Pong-style), eye closes (hurt), tooltip "ouch, that hurt!"
+  const eyeHurtFlash = document.getElementById('eyeHurtFlash');
+  if (eyeHurtFlash && nameEyes.length) {
+    nameEyes.forEach((eye) => {
+      eye.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        if (!eyeHurtFlash) return;
+        eyeHurtFlash.classList.add('is-flashing');
+        eye.classList.add('name-eye--hurt');
+        const rect = eye.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const tip = document.createElement('div');
+        tip.className = 'eye-ouch-tooltip';
+        tip.textContent = 'ouch, that hurt!';
+        tip.style.left = centerX + 'px';
+        tip.style.top = (rect.top - 8) + 'px';
+        tip.style.transform = 'translate(-50%, -100%)';
+        document.body.appendChild(tip);
+        setTimeout(() => eyeHurtFlash.classList.remove('is-flashing'), 120);
+        setTimeout(() => eye.classList.remove('name-eye--hurt'), 900);
+        setTimeout(() => tip.remove(), 2200);
+      });
+    });
+  }
+
+  // Social icons hover: pupils turn into a light red heart
+  const socialIconsRow = document.querySelector('.social-icons-row');
+  if (socialIconsRow) {
+    socialIconsRow.addEventListener('mouseenter', () => body.classList.add('pupils-heart'));
+    socialIconsRow.addEventListener('mouseleave', () => body.classList.remove('pupils-heart'));
+  }
+
+  // Avatar image hover: pupils turn into hearts (2 hearts — one per eye)
+  const heroAvatar = document.querySelector('.home-hero__avatar');
+  if (heroAvatar) {
+    heroAvatar.addEventListener('mouseenter', () => body.classList.add('pupils-heart'));
+    heroAvatar.addEventListener('mouseleave', () => body.classList.remove('pupils-heart'));
+  }
+
+  // Do not Click hover: pupils turn into danger signs
+  const breakWebsiteBtn = document.getElementById('breakWebsiteBtn');
+  if (breakWebsiteBtn) {
+    breakWebsiteBtn.addEventListener('mouseenter', () => body.classList.add('pupils-danger'));
+    breakWebsiteBtn.addEventListener('mouseleave', () => body.classList.remove('pupils-danger'));
   }
 
   // Connect with me: load links from about_me table; email/phone are click-to-copy with tooltip
@@ -312,4 +410,14 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   }
+
+  // Click ripple: small expanding circle at cursor
+  document.addEventListener('click', (e) => {
+    const ripple = document.createElement('div');
+    ripple.className = 'click-ripple';
+    ripple.style.left = e.clientX + 'px';
+    ripple.style.top = e.clientY + 'px';
+    document.body.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove());
+  });
 });

@@ -7,7 +7,7 @@
   <title> Derek's Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/layout.css">
   <link rel="stylesheet" href="css/style.css">
@@ -66,28 +66,22 @@
     <main class="content">
       <section class="home-hero" aria-label="Intro">
         <img class="home-hero__avatar" src="images/Derek_Joel_George.png" alt="Derek Joel George">
-
-        <div class="home-hero__right">
-          <div class="home-hero__meta">
-            <div class="home-hero__name">Derek Joel George</div>
-            <div class="home-hero__role">PRODUCT DESIGNER</div>
-          </div>
-          <span class="home-hero__location-wrap" tabindex="0">
-            <span class="home-hero__location" aria-label="Based in Brisbane, Australia">
-              <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
-              Brisbane, Australia
-            </span>
-            <span class="home-hero__location-tooltip" role="tooltip" id="brisbaneTimeTooltip"></span>
-          </span>
-        </div>
+        <h1 class="home-hero__name">Derek J<span class="name-eye"><span class="name-eye__pupil" aria-hidden="true"></span>o</span>el <span class="home-hero__name-last-full">Ge<span class="name-eye"><span class="name-eye__pupil" aria-hidden="true"></span>o</span>rge</span><span class="home-hero__name-last-abbr" aria-hidden="true">G.</span></h1>
+        <p class="home-hero__tagline" tabindex="0" aria-label="Based in Brisbane, Australia">
+          <span id="hero-role" class="home-hero__role" aria-live="polite">Product Designer</span><br class="home-hero__tagline-br"> based in <span class="home-hero__location" tabindex="0">Brisbane, Australia<span class="home-hero__location-tooltip" role="tooltip">ozzie ozzie ozzie, oi oi oi</span></span> <img src="images/flag-australia.svg" alt="Australia" class="home-hero__flag" loading="lazy">
+        </p>
       </section>
 
       <p class="home-intro">
-        I'm a UX/Product Designer transitioning from a background of consulting into human-centered design. Through my design degree and project work, I've built strong foundations in UX research, interaction design, prototyping, and visual design.
+        I'm a Product Designer transitioning from a background of consulting into human-centered design.      
       </p>
 
       <p class="home-intro">
-        Now I'm on the hunt to find my first UX/Product Designer role. Having built a solid foundation in design through my studies, I want to translate that learning into practice and grow through hands-on real-world projects as well as learn from experienced designers and improve through practice and feedback.
+        Having built a solid foundation in the design process through my <span class="home-intro__degree" tabindex="0">Master of Interaction Design<span class="home-intro__degree-tooltip" role="tooltip">from The University of Queensland</span></span>, I want to translate that learning into practice and grow through hands-on real-world projects as well as learn from experienced designers.
+      </p>
+
+      <p class="home-intro">
+        Aside from working towards landing <span class="home-intro__first-role" tabindex="0">my first UX/Product Designer role<span class="home-intro__first-role-tooltip" role="tooltip">help a man out :')</span></span>, I'm usually grinding on <span class="home-intro__ultimate-team" tabindex="0">Ultimate Team<span class="home-intro__ultimate-team-tooltip" role="tooltip">pina &gt; mbappe</span></span>, listening to my daylist on Spotify or reading a book.
       </p>
 
       <h2 class="home-subheading">CONNECT WITH ME</h2>
@@ -116,16 +110,21 @@
         </span>
       </div>
 
+      <p class="home-mobile-ps">ps. you're missing out on all the tiny easter eggs I've added on the desktop version.</p>
+
       <hr class="home-divider">
       <p class="home-divider-caption">
-        <span class="home-divider-caption-wrap" tabindex="0">
-          Behind the Scenes
-          <span class="home-divider-caption-tooltip" role="tooltip">I'm still documenting my process of developing this website.</span>
-        </span>
-        <span class="home-divider-separator">|</span>
-        <span class="curious-btn-wrap">
-          <button type="button" class="break-website-btn" id="breakWebsiteBtn">Do not Click</button>
-          <span class="curious-btn-tooltip">what if this click breaks the website ?</span>
+        <span id="home-divider-time" class="home-divider-time" aria-live="polite"></span>
+        <span class="home-divider-caption-right">
+          <span class="home-divider-caption-wrap" tabindex="0">
+            Behind the Scenes
+            <span class="home-divider-caption-tooltip" role="tooltip">I'm still documenting my process of developing this website.</span>
+          </span>
+          <span class="home-divider-separator">|</span>
+          <span class="curious-btn-wrap">
+            <button type="button" class="break-website-btn" id="breakWebsiteBtn">Do not Click</button>
+            <span class="curious-btn-tooltip">what if this click breaks the website ?</span>
+          </span>
         </span>
       </p>
 
@@ -220,6 +219,7 @@
     <a href="creative-garden.html" class="mobile-nav-item">Creative Library</a>
     <a href="experiments.html" class="mobile-nav-item">Experiments</a>
   </nav>
+  <div class="eye-hurt-flash" id="eyeHurtFlash" aria-hidden="true"></div>
   <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
   <script defer src="/_vercel/insights/script.js"></script>
   <script src="js/loader.js"></script>
