@@ -489,7 +489,16 @@ body.light-mode .home-mobile-ps {
 .home-divider-caption-wrap {
   position: relative;
   display: inline-block;
-  cursor: not-allowed;
+}
+
+.home-divider-caption-link {
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.home-divider-caption-link:hover {
+  text-decoration: underline;
 }
 
 .home-divider-caption-tooltip {

@@ -62,11 +62,7 @@
     }
     if (!raw) return '';
     if (raw.indexOf('http://') === 0 || raw.indexOf('https://') === 0) return raw;
-    var base = url + '/storage/v1/object/public/';
-    var bucket = window.SUPABASE_STORAGE_BUCKET || 'images';
-    var path = raw.charAt(0) === '/' ? raw.slice(1) : raw;
-    if (path.indexOf(bucket + '/') === 0) return base + path;
-    return base + bucket + '/' + path;
+    return window.resolveSupabaseStorageUrl ? window.resolveSupabaseStorageUrl(raw) : (url + '/storage/v1/object/public/' + (raw.charAt(0) === '/' ? raw.slice(1) : raw));
   }
 
   function getEntryType(entry) {
@@ -168,6 +164,8 @@
 
     var imgUrl = getImageUrl(entry);
     if (imgUrl && coverEl && coverWrapEl) {
+      coverEl.loading = 'lazy';
+      coverEl.decoding = 'async';
       coverEl.src = imgUrl;
       coverEl.style.display = '';
       coverWrapEl.classList.remove('entry-cover-wrap--placeholder');

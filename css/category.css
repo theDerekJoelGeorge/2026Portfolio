@@ -79,6 +79,262 @@ body.light-mode .category-intro {
   display: none;
 }
 
+/* Behind the Scenes: description under heading */
+#btsHeading {
+  margin-bottom: 0;
+}
+
+.bts-heading-desc {
+  margin: 0 0 1.25rem 0;
+  color: var(--color-subheading);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+body.light-mode .bts-heading-desc {
+  color: var(--color-subheading-light);
+}
+
+/* Behind the Scenes: justify paragraph text, same size */
+.bts-description,
+.bts-intro {
+  font-size: 0.875rem;
+  text-align: justify;
+}
+
+/* Behind the Scenes: intro same size as other paragraphs */
+.bts-intro.category-intro {
+  font-size: 0.875rem;
+}
+
+/* Behind the Scenes: hero image before introduction */
+.bts-hero {
+  margin-bottom: 1.25rem;
+}
+
+.bts-hero-image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+/* Behind the Scenes: tech stack section */
+.bts-techstack {
+  margin-top: 2.5rem;
+}
+
+.bts-techstack__subheading {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+body.light-mode .bts-techstack__subheading {
+  color: var(--color-heading-light);
+}
+
+.bts-techstack-table {
+  width: 100%;
+  max-width: 28rem;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.bts-techstack-table__th,
+.bts-techstack-table__td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--color-subheading);
+  font-weight: 600;
+}
+
+.bts-techstack-table__th {
+  font-weight: 700;
+  color: var(--color-heading);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.bts-techstack-table__link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.bts-techstack-table__link:hover {
+  opacity: 0.85;
+}
+
+.bts-techstack-table__cell-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.bts-techstack-table__cell-inner + .bts-techstack-table__cell-inner {
+  margin-left: 0.25rem;
+}
+
+.bts-techstack-table__logo {
+  width: 1.25rem;
+  height: 1.25rem;
+  object-fit: contain;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+body.light-mode .bts-techstack-table__th,
+body.light-mode .bts-techstack-table__td {
+  border-color: rgba(0, 0, 0, 0.15);
+  color: var(--color-subheading-light);
+}
+
+body.light-mode .bts-techstack-table__th {
+  color: var(--color-heading-light);
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* Behind the Scenes: Choices section */
+.bts-choices {
+  margin-top: 2.5rem;
+}
+
+.bts-choices__title {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+body.light-mode .bts-choices__title {
+  color: var(--color-heading-light);
+}
+
+.bts-choices__subheading {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+body.light-mode .bts-choices__subheading {
+  color: var(--color-heading-light);
+}
+
+.bts-choices__content {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--color-subheading);
+  text-align: justify;
+}
+
+body.light-mode .bts-choices__content {
+  color: var(--color-subheading-light);
+}
+
+.bts-choices__img-wrap {
+  margin-top: 1.25rem;
+}
+
+.bts-choices__img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+}
+
+.bts-choices__block {
+  margin-top: 2rem;
+}
+
+/* Behind the Scenes: Inspirations section */
+.bts-inspirations {
+  margin-top: 2.5rem;
+}
+
+.bts-inspirations__title {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+body.light-mode .bts-inspirations__title {
+  color: var(--color-heading-light);
+}
+
+.bts-inspirations__list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.bts-inspiration-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.bts-inspiration-text {
+  margin: 0;
+  color: var(--color-subheading);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+body.light-mode .bts-inspiration-text {
+  color: var(--color-subheading-light);
+}
+
+.bts-inspiration-media-wrap {
+  max-width: 100%;
+}
+
+.bts-inspiration-video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+  background: #000;
+}
+
+.bts-inspiration-caption {
+  margin: 0.35rem 0 0 0;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--color-subheading);
+}
+
+body.light-mode .bts-inspiration-caption {
+  color: var(--color-subheading-light);
+}
+
+/* Behind the Scenes: content links (old portfolio, jonhowell.com) – same style */
+.bts-content-link {
+  color: var(--color-heading);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  font-weight: 600;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: opacity 0.2s ease;
+}
+
+.bts-content-link:hover {
+  opacity: 0.85;
+}
+
+body.light-mode .bts-content-link {
+  color: var(--color-heading-light);
+}
+
 /* About Me page: sections from Supabase (description_1, hero image, paragraph_2) */
 .about-me__section {
   margin-bottom: 1rem;

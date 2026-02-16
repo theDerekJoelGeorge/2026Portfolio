@@ -28,12 +28,7 @@
     if (!raw || typeof raw !== 'string') return '';
     var s = raw.trim();
     if (!s) return '';
-    if (s.indexOf('http://') === 0 || s.indexOf('https://') === 0) return s;
-    var base = url + '/storage/v1/object/public/';
-    var bucket = window.SUPABASE_STORAGE_BUCKET || 'images';
-    var path = s.charAt(0) === '/' ? s.slice(1) : s;
-    if (path.indexOf(bucket + '/') === 0) return base + path;
-    return base + bucket + '/' + path;
+    return window.resolveSupabaseStorageUrl ? window.resolveSupabaseStorageUrl(s) : (s.indexOf('http://') === 0 || s.indexOf('https://') === 0 ? s : url + '/storage/v1/object/public/' + (s.charAt(0) === '/' ? s.slice(1) : (window.SUPABASE_STORAGE_BUCKET || 'images') + '/' + s));
   }
 
   function getHeroImageUrl(row) {

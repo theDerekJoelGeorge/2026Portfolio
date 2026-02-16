@@ -8,6 +8,11 @@ function mustGetEnv() {
   return { url, key, table };
 }
 
+function resolveStorageUrl(u) {
+  if (!u || typeof u !== 'string') return u;
+  return window.resolveSupabaseStorageUrl ? window.resolveSupabaseStorageUrl(u.trim()) : u;
+}
+
 function supabaseHeaders(key) {
   return {
     apikey: key,
@@ -122,8 +127,9 @@ function renderList(container, rows) {
       const year = r.year ? escapeHtml(r.year) : '';
       const description = escapeHtml(r.hero_description || 'This is the project description.');
       const meta = [role, year].filter(Boolean).join(' | ');
-      const img = r.hero_image_url
-        ? `<img class="case-card__img" src="${escapeHtml(r.hero_image_url)}" alt="${title} cover">`
+      const heroUrl = resolveStorageUrl(r.hero_image_url);
+      const img = heroUrl
+        ? `<img class="case-card__img" src="${escapeHtml(heroUrl)}" alt="${title} cover" loading="lazy" decoding="async">`
         : `<div class="case-card__img case-card__img--placeholder" aria-hidden="true"></div>`;
 
       return `
@@ -162,8 +168,9 @@ function renderDetail(container, row) {
   if (breadcrumbCurrent) breadcrumbCurrent.textContent = row.name || row.slug || 'Case Study';
   const subtitle = escapeHtml(row.role || '');
   const year = row.year ? `<span class="case-study__meta">${escapeHtml(row.year)}</span>` : '';
-  const cover = row.hero_image_url
-    ? `<img class="case-study__cover" src="${escapeHtml(row.hero_image_url)}" alt="${title} cover">`
+  const coverUrl = resolveStorageUrl(row.hero_image_url);
+  const cover = coverUrl
+    ? `<img class="case-study__cover" src="${escapeHtml(coverUrl)}" alt="${title} cover" loading="lazy" decoding="async">`
     : '';
 
   const section = (heading, bodyHtml) => {
@@ -350,7 +357,8 @@ function renderDetail(container, row) {
 
   const img = (url, alt, caption) => {
     if (!url) return '';
-    const imgTag = `<img class="cs-img" src="${escapeHtml(url)}" alt="${escapeHtml(alt || 'Project image')}">`;
+    const resolved = resolveStorageUrl(url);
+    const imgTag = `<img class="cs-img" src="${escapeHtml(resolved)}" alt="${escapeHtml(alt || 'Project image')}" loading="lazy" decoding="async">`;
     if (caption) {
       return `<figure class="cs-figure">${imgTag}<figcaption class="cs-figure__caption">${escapeHtml(caption)}</figcaption></figure>`;
     }

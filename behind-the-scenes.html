@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="images/Logo-light.png" type="image/png">
-  <title>About Me – Derek's Portfolio</title>
+  <title>Behind the Scenes – Derek's Portfolio</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -27,7 +27,7 @@
           <li><a href="index.html" data-initial="H"><span>Home</span></a></li>
           <li><a href="project.html" data-initial="C"><span>Case Studies</span></a></li>
           <li><a href="resume.html" data-initial="R"><span>Resume</span></a></li>
-          <li><a href="about-me.html" class="active" data-initial="A"><span>About Me</span></a></li>
+          <li><a href="about-me.html" data-initial="A"><span>About Me</span></a></li>
           <li><a href="creative-garden.html" data-initial="C"><span>Creative Library</span></a></li>
           <li><a href="experiments.html" data-initial="E"><span>Experiments</span></a></li>
         </ul>
@@ -63,10 +63,90 @@
     </aside>
     <main class="content">
       <div class="category-page__inner">
-        <h1 class="category-title">About Me</h1>
-        <p id="aboutMeLoading" class="category-intro">Loading…</p>
-        <p id="aboutMeError" class="category-intro" style="display: none;"></p>
-        <div id="aboutMeContent" style="display: none;"></div>
+        <h1 id="btsHeading" class="category-title">Behind the Scenes</h1>
+        <p class="bts-heading-desc">what went on behind building this website ?</p>
+        <p id="btsDescription" class="bts-description" style="display: none;"></p>
+        <div id="btsHeroWrap" class="bts-hero" style="display: none;">
+          <img id="btsHeroImage" class="bts-hero-image" alt="" loading="lazy" decoding="async">
+        </div>
+        <div id="btsIntroduction" class="category-intro bts-intro" style="display: none;"></div>
+        <section id="btsInspirationsWrap" class="bts-inspirations" style="display: none;">
+          <h2 class="bts-inspirations__title">Inspirations</h2>
+          <div id="btsInspirationsContent" class="bts-inspirations__list"></div>
+        </section>
+        <section class="bts-techstack">
+          <h2 class="bts-techstack__subheading">Tech Stack</h2>
+          <table class="bts-techstack-table">
+            <thead>
+              <tr>
+                <th class="bts-techstack-table__th" scope="col">Role</th>
+                <th class="bts-techstack-table__th" scope="col">Software</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="bts-techstack-table__td">Frontend</td>
+                <td class="bts-techstack-table__td">HTML, CSS, vanilla JavaScript</td>
+              </tr>
+              <tr>
+                <td class="bts-techstack-table__td">Backend and Database</td>
+                <td class="bts-techstack-table__td">
+                  <span class="bts-techstack-table__cell-inner">
+                    <img src="https://www.google.com/s2/favicons?domain=supabase.com&amp;sz=32" alt="" class="bts-techstack-table__logo" width="20" height="20" loading="lazy">
+                    <a href="https://supabase.com" target="_blank" rel="noopener noreferrer" class="bts-techstack-table__link">Supabase</a>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td class="bts-techstack-table__td">Hosting and Analytics</td>
+                <td class="bts-techstack-table__td">
+                  <span class="bts-techstack-table__cell-inner">
+                    <img src="https://vercel.com/favicon.ico" alt="" class="bts-techstack-table__logo" width="20" height="20" loading="lazy">
+                    <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="bts-techstack-table__link">Vercel</a>
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td class="bts-techstack-table__td">AI Tools</td>
+                <td class="bts-techstack-table__td">
+                  <span class="bts-techstack-table__cell-inner">
+                    <img src="https://cursor.com/favicon.ico" alt="" class="bts-techstack-table__logo" width="20" height="20" loading="lazy">
+                    <a href="https://cursor.com" target="_blank" rel="noopener noreferrer" class="bts-techstack-table__link">Cursor</a>
+                  </span>
+                  , 
+                  <span class="bts-techstack-table__cell-inner">
+                    <img src="https://www.google.com/s2/favicons?domain=perplexity.ai&amp;sz=32" alt="" class="bts-techstack-table__logo" width="20" height="20" loading="lazy">
+                    <a href="https://perplexity.ai" target="_blank" rel="noopener noreferrer" class="bts-techstack-table__link">Perplexity</a>
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <section class="bts-choices">
+          <h2 class="bts-choices__title">Choices</h2>
+          <h3 class="bts-choices__subheading">Why Supabase ?</h3>
+          <div id="btsChoicesContent" class="bts-choices__content"></div>
+          <div id="btsChoicesImgWrap" class="bts-choices__img-wrap" style="display: none;">
+            <img id="btsChoicesImage" class="bts-choices__img" alt="" loading="lazy" decoding="async">
+          </div>
+          <div class="bts-choices__block">
+            <h3 class="bts-choices__subheading">Why Vercel ?</h3>
+            <div id="btsChoicesContent2" class="bts-choices__content"></div>
+            <div id="btsChoicesImgWrap2" class="bts-choices__img-wrap" style="display: none;">
+              <img id="btsChoicesImage2" class="bts-choices__img" alt="" loading="lazy" decoding="async">
+            </div>
+          </div>
+          <div class="bts-choices__block">
+            <h3 class="bts-choices__subheading">Why Cursor ?</h3>
+            <div id="btsChoicesContent3" class="bts-choices__content"></div>
+            <div id="btsChoicesImgWrap3" class="bts-choices__img-wrap" style="display: none;">
+              <img id="btsChoicesImage3" class="bts-choices__img" alt="" loading="lazy" decoding="async">
+            </div>
+          </div>
+        </section>
+        <p id="btsLoading" class="category-intro">Loading…</p>
+        <p id="btsError" class="category-intro" style="display: none;"></p>
       </div>
     </main>
   </div>
@@ -89,7 +169,7 @@
     <a href="index.html" class="mobile-nav-item">Home</a>
     <a href="project.html" class="mobile-nav-item">Case Studies</a>
     <a href="resume.html" class="mobile-nav-item">Resume</a>
-    <a href="about-me.html" class="mobile-nav-item active">About Me</a>
+    <a href="about-me.html" class="mobile-nav-item">About Me</a>
     <a href="creative-garden.html" class="mobile-nav-item">Creative Library</a>
     <a href="experiments.html" class="mobile-nav-item">Experiments</a>
   </nav>
@@ -102,6 +182,6 @@
   <script src="js/supabase-config.js"></script>
   <script src="js/supabase-storage.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/about-me.js"></script>
+  <script src="js/behind-the-scenes.js"></script>
 </body>
 </html>

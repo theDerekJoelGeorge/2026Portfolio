@@ -7,6 +7,10 @@ window.SUPABASE_CATEGORIES_TABLE = 'categories';
 window.SUPABASE_CATEGORY_ENTRIES_TABLE = 'category_entries';
 // About Me page: must match your Supabase table name exactly.
 window.SUPABASE_ABOUT_ME_TABLE = 'about_me';
+// Behind the Scenes page: must match your Supabase table name exactly.
+window.SUPABASE_BEHIND_THE_SCENES_TABLE = 'behind_the_scenes';
 // If category_entries image URLs are Supabase Storage paths, set your bucket name (e.g. 'images', 'photos'):
 // window.SUPABASE_STORAGE_BUCKET = 'images';
+// Set to true on Pro plan to serve images via Image Transformations (resize/quality) and reduce egress:
+window.SUPABASE_IMAGE_TRANSFORM = false;
 

@@ -106,14 +106,14 @@ body.light-mode .resume-expand-collapse-btn:hover {
 }
 
 body.light-mode .resume-download-btn {
-  color: var(--color-heading-light);
-  background: rgba(0, 0, 0, 0.06);
-  border-color: rgba(0, 0, 0, 0.2);
+  color: #1a1a1a;
+  background: #e6e6e6;
+  border: 0.0625rem solid #c4c4c4;
 }
 
 body.light-mode .resume-download-btn:hover {
-  background: rgba(0, 0, 0, 0.1);
-  border-color: rgba(0, 0, 0, 0.35);
+  background: #dcdcdc;
+  border-color: #9f9f9f;
 }
 
 .page-title {
