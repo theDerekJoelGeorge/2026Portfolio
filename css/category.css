@@ -296,6 +296,7 @@ body.light-mode .bts-cursor-gallery__acknowledgements {
   margin: 1rem 0 0 0;
   padding-left: 1.25rem;
   list-style-type: disc;
+  text-align: left;
 }
 
 .bts-cursor-gallery__acknowledgements-content {
@@ -304,6 +305,7 @@ body.light-mode .bts-cursor-gallery__acknowledgements {
   line-height: 1.5;
   font-weight: 700;
   color: var(--color-subheading);
+  text-align: left;
 }
 
 .bts-cursor-gallery__acknowledgements-content:last-child {

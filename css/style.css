@@ -565,6 +565,35 @@ body.light-mode .navigation a:focus {
   margin-bottom: 0;
 }
 
+.sidebar-footer__issues-item {
+  display: block;
+}
+
+.sidebar-footer__issues-issue-text {
+  display: block;
+}
+
+.sidebar-footer__issues-expected-wrap {
+  display: block;
+  margin-top: 0.2rem;
+  font-weight: 400;
+}
+
+.sidebar-footer__issues-expected-label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  opacity: 0.9;
+}
+
+.sidebar-footer__issues-expected-value {
+  display: block;
+  margin-top: 0.15rem;
+  font-weight: 400;
+}
+
 /* JS adds .is-visible; keep hover as fallback */
 .sidebar-footer__issues-tooltip.is-visible,
 .sidebar-footer__issues-wrap:hover .sidebar-footer__issues-tooltip,
