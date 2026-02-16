@@ -251,6 +251,44 @@ body.light-mode .bts-choices__content {
   margin-top: 2rem;
 }
 
+/* Behind the Scenes: Why Cursor gallery – 2 photos per row */
+.bts-cursor-gallery {
+  margin-top: 1.5rem;
+}
+
+.bts-cursor-gallery__title {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-heading);
+}
+
+body.light-mode .bts-cursor-gallery__title {
+  color: var(--color-heading-light);
+}
+
+.bts-cursor-gallery__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.bts-cursor-gallery__item {
+  margin: 0;
+}
+
+.bts-cursor-gallery__img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  aspect-ratio: 3 / 2;
+}
+
 /* Behind the Scenes: Inspirations section */
 .bts-inspirations {
   margin-top: 2.5rem;
@@ -1067,6 +1105,10 @@ body.light-mode .back-to-top:focus-visible {
 
   .category-title {
     font-size: 1.25rem;
+  }
+
+  .bts-cursor-gallery__grid {
+    grid-template-columns: 1fr;
   }
 
   .video-log-entry__title {
