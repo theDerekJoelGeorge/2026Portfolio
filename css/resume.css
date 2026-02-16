@@ -406,7 +406,7 @@ body.light-mode .resume-references-note {
   color: var(--color-subheading-light);
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .resume-work__degree-tooltip {
     display: none !important;
   }

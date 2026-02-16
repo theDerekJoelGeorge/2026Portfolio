@@ -59,7 +59,7 @@
 }
 
 /* Desktop: circle (theme color) + pupil (opposite color) following cursor */
-@media (min-width: 48.0625rem) {
+@media (min-width: 1281px) {
   .name-eye {
     color: transparent;
     cursor: pointer;
@@ -309,7 +309,7 @@ body.light-mode .home-hero__role {
   display: none;
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .home-hero__avatar {
     display: block;
     width: 6rem;
@@ -528,6 +528,7 @@ body.light-mode .home-mobile-ps {
 .home-subheading {
   margin-top: 2rem;
   margin-bottom: 0.75rem;
+  max-width: 56rem;
   color: #ffffff;
   font-size: 0.875rem;
   letter-spacing: 0.12em;
@@ -541,6 +542,7 @@ body.light-mode .home-mobile-ps {
   gap: 1.5rem;
   margin-top: 1rem;
   flex-wrap: wrap;
+  max-width: 56rem;
 }
 
 .social-icon-link {
@@ -621,7 +623,7 @@ body.light-mode .home-mobile-ps {
 }
 
 /* Home (desktop): vertically center all content, slightly higher */
-@media (min-width: 48.0625rem) {
+@media (min-width: 1281px) {
   .content:has(.home-hero) {
     display: flex;
     flex-direction: column;
@@ -746,7 +748,7 @@ body.light-mode .break-website-btn:hover {
 }
 
 /* Hide tooltips on mobile (except email/phone copy tooltips) */
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .home-hero__location-tooltip,
   .home-intro__ultimate-team-tooltip,
   .home-intro__first-role-tooltip,

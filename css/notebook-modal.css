@@ -170,7 +170,7 @@
 }
 
 /* Responsive */
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .notebook-detail__content {
     min-height: auto;
   }

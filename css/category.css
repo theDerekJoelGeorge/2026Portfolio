@@ -629,7 +629,7 @@ body.light-mode .gallery-column-switcher__btn.is-active {
   margin: 0 auto;
 }
 
-@media (min-width: 48rem) {
+@media (min-width: 1281px) {
   .gallery-toolbar .gallery-column-switcher {
     display: flex;
   }
@@ -1054,7 +1054,7 @@ body.light-mode .back-to-top:focus-visible {
   outline-color: rgba(0, 0, 0, 0.85);
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .breadcrumbs {
     padding-left: 0.5rem;
     padding-right: 0.5rem;

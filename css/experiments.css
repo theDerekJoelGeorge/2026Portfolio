@@ -12,7 +12,7 @@ body.light-mode .page-title {
 }
 
 .page-intro {
-  margin: 0 0 2rem 0;
+  margin: 0 0 1rem 0;
   color: var(--color-subheading);
   font-size: 1rem;
   line-height: 1.6;
@@ -26,7 +26,7 @@ body.light-mode .page-intro {
 }
 
 .experiments-subheading {
-  margin: 2rem 0 0.5rem 0;
+  margin: 1rem 0 0.5rem 0;
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 0.12em;
@@ -40,11 +40,14 @@ body.light-mode .experiments-subheading {
 
 .experiments-prompt {
   margin: 0 0 2rem 0;
+  margin-left: calc((100% - 64rem) / 2);
+  margin-right: auto;
   padding: 0.75rem 1rem;
   font-size: 1rem;
   line-height: 1.5;
   color: var(--color-heading);
   width: fit-content;
+  align-self: flex-start;
   background: rgba(255, 255, 255, 0.08);
   border: 0.0625rem solid rgba(255, 255, 255, 0.35);
   border-radius: 0.375rem;
@@ -174,7 +177,7 @@ body.light-mode .back-to-top:focus-visible {
   outline-color: rgba(0, 0, 0, 0.85);
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .page-title {
     font-size: 1.25rem;
   }

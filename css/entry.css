@@ -118,7 +118,7 @@ body.light-mode .entry-body {
   margin-bottom: 0.5em;
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .entry-article {
     padding-left: 0.5rem;
     padding-right: 0.5rem;

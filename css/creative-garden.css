@@ -12,7 +12,7 @@ body.light-mode .page-title {
 }
 
 .page-intro {
-  margin: 0 0 3rem 0;
+  margin: 0 0 1rem 0;
   color: var(--color-subheading);
   font-size: 1rem;
   font-weight: 400;
@@ -23,7 +23,7 @@ body.light-mode .page-intro {
 }
 
 .library-container {
-  margin: 3rem 0;
+  margin: 1.25rem 0;
 }
 
 /* Folders grid */
@@ -179,7 +179,7 @@ body.light-mode .library-empty {
 }
 
 
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .page-title {
     font-size: 1.25rem;
   }

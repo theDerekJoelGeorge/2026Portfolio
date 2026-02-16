@@ -112,14 +112,14 @@
   padding: 0.5rem 1rem;
 }
 
-@media (min-width: 48.0625rem) {
+@media (min-width: 1281px) {
   .mobile-nav,
   .mobile-header {
     display: none !important;
   }
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .sidebar {
     display: none;
   }

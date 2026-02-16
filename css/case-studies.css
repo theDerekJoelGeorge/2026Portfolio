@@ -111,7 +111,7 @@ body.light-mode .back-to-top:focus-visible {
   outline-color: rgba(0, 0, 0, 0.85);
 }
 
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   /* keep it above the mobile nav pill */
   .back-to-top {
     bottom: 6.5rem;
@@ -221,7 +221,7 @@ body.light-mode .case-card__img--placeholder {
 }
 
 /* Mobile adjustments */
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .case-card__img {
     height: 16rem;
   }
@@ -598,7 +598,7 @@ body.light-mode .cs-figure__caption {
 }
 
 /* Mobile: tighter layout, arrows centered on image, minimal gap to dots */
-@media screen and (max-width: 48rem) {
+@media screen and (max-width: 1280px) {
   .cs-slideshow {
     width: 100%;
     max-width: 100%;
@@ -998,7 +998,7 @@ body.light-mode .cs-card__stat {
 }
 
 /* Case study detail: smaller title and YouTube embed on mobile */
-@media (max-width: 48rem) {
+@media (max-width: 1280px) {
   .case-study__title {
     font-size: 1.35rem;
   }
