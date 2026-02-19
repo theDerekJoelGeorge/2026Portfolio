@@ -91,16 +91,10 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 
-  // Set current date in footer
+  // Set "Last Updated" in footer from latest GitHub push date
   const dateLink = document.querySelector('.sidebar-footer .date-link');
   if (dateLink) {
-    const now = new Date();
-    const day = now.getDate();
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-    const month = monthNames[now.getMonth()];
-    const year = now.getFullYear();
-    
-    // Get ordinal suffix for day
     const getOrdinalSuffix = (day) => {
       if (day > 3 && day < 21) return 'th';
       switch (day % 10) {
@@ -110,9 +104,32 @@ document.addEventListener('DOMContentLoaded', () => {
         default: return 'th';
       }
     };
-    
-    const ordinalSuffix = getOrdinalSuffix(day);
-    dateLink.textContent = `${day}${ordinalSuffix} ${month} ${year}`;
+    const formatDate = (date) => {
+      const day = date.getDate();
+      const month = monthNames[date.getMonth()];
+      const year = date.getFullYear();
+      return `${day}${getOrdinalSuffix(day)} ${month} ${year}`;
+    };
+    const fallbackToToday = () => {
+      dateLink.textContent = formatDate(new Date());
+    };
+    const repo = window.GITHUB_LAST_UPDATED_REPO || 'theDerekJoelGeorge/2026Portfolio';
+    fetch(`https://api.github.com/repos/${repo}/commits?per_page=1`, {
+      headers: { Accept: 'application/vnd.github.v3+json' }
+    })
+      .then((res) => res.ok ? res.json() : [])
+      .then((commits) => {
+        if (commits && commits[0] && commits[0].commit && commits[0].commit.committer && commits[0].commit.committer.date) {
+          const pushDate = new Date(commits[0].commit.committer.date);
+          if (!isNaN(pushDate.getTime())) {
+            dateLink.textContent = formatDate(pushDate);
+            return;
+          }
+        }
+        fallbackToToday();
+      })
+      .catch(fallbackToToday);
+    fallbackToToday();
   }
 
   // Set active state for mobile navigation
